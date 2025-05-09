@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- Nền trắng -->
+    <solid android:color="#FFFFFF" />
+
+    <!-- Bo góc -->
+    <corners android:radius="24dp" />
+
+    <!-- Viền mờ nhẹ -->
+    <stroke
+        android:width="1dp"
+        android:color="#ED2727" />
+
+    <!-- Đổ bóng nếu muốn hiệu ứng nổi hơn (áp dụng từ API 21+) -->
+    <!-- Lưu ý: elevation không áp dụng ở đây, cần set trong View -->
+</shape>

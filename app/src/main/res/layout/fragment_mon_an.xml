@@ -1,0 +1,314 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FAF3EA">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp"
+                android:background="@drawable/search_background"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@android:drawable/ic_menu_search"
+                    android:tint="#5B020B" />
+
+                <EditText
+                    android:id="@+id/search_box"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:hint="Tìm kiếm món ăn, tỉnh thành..."
+                    android:background="@android:color/transparent"
+                    android:textColor="#000"
+                    android:textSize="16sp"
+                    android:inputType="text" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardSlider"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginBottom="16dp"
+            android:padding="15dp"
+            app:cardCornerRadius="15dp">
+
+            <com.denzcoskun.imageslider.ImageSlider
+                android:id="@+id/image_slider"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:iss_auto_cycle="true"
+                app:iss_delay="2000"
+                app:iss_period="2000"
+                app:iss_text_align="CENTER" />
+        </androidx.cardview.widget.CardView>
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="170dp"
+            android:layout_height="90dp"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="centerCrop"
+            android:src="@drawable/logosf" />
+
+        <TextView
+            android:id="@+id/logogiua"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="----   KHÁM PHÁ ẨM THỰC MIỀN TRUNG   ----"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:fontFamily="cursive"
+            android:textColor="#5B020B"
+            android:paddingBottom="25dp" />
+
+        <ImageView
+            android:id="@+id/ma"
+            android:layout_width="170dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="centerCrop"
+            android:src="@drawable/restorent" />
+
+        <TextView
+            android:id="@+id/gioithieu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="\nẨm thực miền Trung Việt Nam\nNổi tiếng với sự phong phú và hương vị độc đáo, thể hiện rõ nét văn hóa và lối sống của người dân nơi đây. Với dải đất hẹp kéo dài từ Thanh Hóa đến Bình Thuận, miền Trung mang trong mình nhiều món ăn đặc trưng, từ bún bò Huế đậm đà, mì Quảng giản dị nhưng tinh tế, đến bánh bèo, bánh nậm mang vị ngọt nhẹ nhàng.\nMỗi món ăn miền Trung đều không chỉ là một phần ăn mà là một trải nghiệm về hương vị, về sự khéo léo trong từng công đoạn chế biến, từ việc lựa chọn nguyên liệu cho đến cách bày trí. Sự cân bằng tuyệt vời giữa mặn, ngọt, cay và chua khiến các món ăn nơi đây luôn hấp dẫn thực khách, dù là những bữa cơm gia đình đầm ấm hay những bữa tiệc thịnh soạn. Với một thực đơn như vậy, ẩm thực miền Trung không chỉ làm say lòng người mà còn mở ra một hành trình khám phá đầy thú vị, để hiểu thêm về con người và nền văn hóa độc đáo của mảnh đất này."
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:fontFamily="cursive"
+            android:textColor="#5B020B"
+            android:paddingBottom="25dp" />
+
+        <TextView
+            android:id="@+id/cacmonnt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Món ăn nổi tiếng"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#5B020B"
+            android:paddingBottom="10dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerMonAn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:clipToPadding="false"
+            android:scrollbars="horizontal"/>
+
+
+        <GridLayout
+            android:id="@+id/gridDanhGia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alignmentMode="alignMargins"
+            android:columnCount="3"
+            android:rowOrderPreserved="false"
+            android:useDefaultMargins="true"
+            android:padding="8dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/bg_item"
+                android:padding="4dp">
+
+                <!-- Ảnh món ăn -->
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/a1" />
+
+                <!-- Dãy 5 ngôi sao -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:paddingTop="4dp">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/star1" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/star1" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/star1" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/star1" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/star1" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/bg_item"
+                android:padding="4dp">
+
+                <!-- Ảnh món ăn -->
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/a3" />
+
+                <!-- Dãy 5 ngôi sao -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:paddingTop="4dp">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/star1" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/star1" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/star1" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/star1" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/star1" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/bg_item"
+                android:padding="4dp">
+
+                <!-- Ảnh món ăn -->
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/a2" />
+
+                <!-- Dãy 5 ngôi sao -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:paddingTop="4dp">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/star1" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/star1" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/star1" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/star1" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/star1" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </GridLayout>
+
+
+
+        <TextView
+            android:id="@+id/tatcamonan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Danh mục tất cả món ăn"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#5B020B"
+            android:paddingBottom="10dp" />
+
+        <!-- fragment hoặc activity layout -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerTatCaMonAn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:orientation="horizontal" />
+
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "795980443548",
+    "project_id": "quanlyamthuc-tpmd",
+    "storage_bucket": "quanlyamthuc-tpmd.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:795980443548:android:89064eb6af925495cfa259",
+        "android_client_info": {
+          "package_name": "com.example.quanlyamthuc"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKZE5cpFh4eGDVwFTCvJE1bgp2H2Q657Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

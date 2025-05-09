@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_trang_chu" android:icon="@drawable/ic_home" android:title="Trang chủ"/>
+    <item android:id="@+id/nav_mon_an" android:icon="@drawable/ic_home" android:title="Món ăn"/>
+    <item android:id="@+id/nav_lien_he" android:icon="@drawable/ic_home" android:title="Liên hệ"/>
+    <item android:id="@+id/nav_dang_bai" android:icon="@drawable/ic_home" android:title="Đăng bài"/>
+    <item android:id="@+id/nav_nguoi_dung" android:icon="@drawable/user" android:title=""/>
+
+
+</menu>
