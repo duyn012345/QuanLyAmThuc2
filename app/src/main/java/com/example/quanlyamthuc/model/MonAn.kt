@@ -16,5 +16,6 @@ data class MonAn(
     val giaca: String = "",
     val created_at: String="",
     val updated_at: String="",
+    var tenTinh: String? = null,
 
 ): Serializable

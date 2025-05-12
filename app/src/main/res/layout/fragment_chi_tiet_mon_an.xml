@@ -1,7 +1,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FAF4EE">
 
     <LinearLayout
         android:padding="16dp"
@@ -12,7 +13,7 @@
         <TextView
             android:id="@+id/tvTenMonChiTiet"
             android:textStyle="bold"
-            android:textSize="30sp"
+            android:textSize="32sp"
             android:layout_marginTop="8dp"
             android:gravity="center"
             android:fontFamily="cursive"
@@ -54,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tên tỉnh"
-                android:textSize="17sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/black" />
         </LinearLayout>
@@ -70,8 +71,8 @@
             android:id="@+id/thongtinnoibat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="\n------   Thông tin nổi bật   ------"
-            android:textSize="25dp"
+            android:text="\n----   Thông tin nổi bật   ----"
+            android:textSize="28dp"
             android:textStyle="bold"
             android:gravity="center"
             android:fontFamily="cursive"
@@ -108,12 +109,29 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end">
+
+            <ImageButton
+                android:id="@+id/btnThemDanhGia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/add"
+                android:background="@null"
+                android:contentDescription="Thêm đánh giá"
+                android:layout_marginTop="16dp" />
+        </LinearLayout>
+
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvDanhGia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:padding="8dp"/>
+            android:paddingTop="10dp"/>
+
 
     </LinearLayout>
 </ScrollView>

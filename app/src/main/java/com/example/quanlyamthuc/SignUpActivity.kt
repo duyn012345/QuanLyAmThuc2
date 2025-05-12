@@ -75,8 +75,6 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun saveUserData() {
-        val user = UserModel(name = userName, email = email, role = "user")
-
         val userId = auth.currentUser?.uid
         Log.d("DEBUG", "Gọi saveUserData() - UID hiện tại: $userId")
 
@@ -85,22 +83,34 @@ class SignUpActivity : AppCompatActivity() {
             return
         }
 
-        // Lưu dữ liệu vào Firestore
         val db = FirebaseFirestore.getInstance()
-        db.collection("nguoidung").document(userId).set(user)
-            .addOnCompleteListener {
-                if (it.isSuccessful) {
-                    Log.d("Firebase", "Lưu dữ liệu người dùng thành công: $userId")
-                    auth.signOut()
-                    val intent = Intent(this, LoginActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(intent)
-                    finish()
-                } else {
-                    Log.e("Firebase", "Lỗi khi lưu dữ liệu: ${it.exception?.message}")
-                    Toast.makeText(this, "Lưu dữ liệu thất bại", Toast.LENGTH_SHORT).show()
+        val nguoiDungRef = db.collection("nguoidung")
+
+        // Lấy số lượng người dùng hiện tại
+        nguoiDungRef.get().addOnSuccessListener { snapshot ->
+            val idnd = (snapshot.size() + 1).toString()  // Tự động tăng: số lượng + 1
+
+            val user = UserModel(idnd = idnd, name = userName, email = email, role = "user")
+
+            // Lưu dữ liệu người dùng
+            nguoiDungRef.document(userId).set(user)
+                .addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        Log.d("Firebase", "Lưu dữ liệu người dùng thành công: $userId với idnd: $idnd")
+                        auth.signOut()
+                        val intent = Intent(this, LoginActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        Log.e("Firebase", "Lỗi khi lưu dữ liệu: ${it.exception?.message}")
+                        Toast.makeText(this, "Lưu dữ liệu thất bại", Toast.LENGTH_SHORT).show()
+                    }
                 }
-            }
+        }.addOnFailureListener {
+            Log.e("Firebase", "Không thể lấy danh sách người dùng: ${it.message}")
+            Toast.makeText(this, "Lỗi khi tạo idnd", Toast.LENGTH_SHORT).show()
+        }
     }
 
 

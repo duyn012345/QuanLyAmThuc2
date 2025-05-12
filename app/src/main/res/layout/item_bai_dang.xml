@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    card_view:cardCornerRadius="16dp"
+    card_view:cardElevation="6dp"
+    card_view:cardBackgroundColor="#FAF3EA">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <!-- Người đăng -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="4dp">
+
+            <ImageView
+                android:id="@+id/imgAvatar"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/nguoidung"
+                android:layout_marginEnd="6dp"
+                android:contentDescription="Ảnh đại diện" />
+
+            <TextView
+                android:id="@+id/tvTenNguoiDang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Đăng bởi..."
+                android:textStyle="bold"
+                android:textSize="15sp"/>
+        </LinearLayout>
+
+        <!-- Thời gian -->
+        <TextView
+            android:id="@+id/tvThoiGian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thời gian đăng"
+            android:textSize="12sp"
+            android:textColor="#666" />
+
+        <!-- Ảnh món ăn -->
+        <ImageView
+            android:id="@+id/imgMonAn"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="4dp"/>
+
+        <!-- Tên món -->
+        <TextView
+            android:id="@+id/tvTenMonAn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tên món ăn"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_marginTop="4dp" />
+
+        <!-- Tỉnh -->
+        <TextView
+            android:id="@+id/tvTinhThanh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tỉnh"
+            android:drawableStart="@drawable/address"
+            android:textColor="#777777" />
+
+        <TextView
+            android:id="@+id/tvNoiDung"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:text="Nội dung món ăn..."
+            android:textColor="#000000" />
+
+        <!-- Xem thêm -->
+        <TextView
+            android:id="@+id/tvXemThem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Xem thêm"
+            android:textColor="#6D5E5F"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvAn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ẩn"
+            android:textColor="#6D5E5F"
+            android:visibility="gone"
+            android:layout_marginTop="8dp"/>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

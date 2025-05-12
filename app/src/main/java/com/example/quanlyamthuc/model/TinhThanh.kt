@@ -1,10 +1,9 @@
 package com.example.quanlyamthuc.model
 
 data class TinhThanh(
-    val idtt: String,
-    val tentinh: String,
-    val hinhanh: String,
-    val created_at: String,
-    val updated_at: String
-
+    var idtt: String? = null,
+    var tentinh: String? = null,
+    var hinhanh: String? = null,
+    var created_at: String? = null,
+    var updated_at: String? = null
 )

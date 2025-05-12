@@ -1,33 +1,52 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="8dp">
+    android:layout_width="150dp"
+    android:layout_height="200dp"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="6dp"
+    app:cardBackgroundColor="#F8D2D2"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
+<!--    app:cardBackgroundColor="#FAF3EA"-->
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/imgMonAn"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:scaleType="centerCrop"
-        app:shapeAppearanceOverlay="@style/ShapeAppearance.MonAnHinhTron" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="12dp">
 
-    <TextView
-        android:id="@+id/tvTenMonAn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tên món ăn"
-        android:textColor="@android:color/black"
-        android:textStyle="bold"
-        android:layout_marginTop="6dp" />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgMonAn"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.MonAnHinhTron"
+            android:src="@drawable/bn1"
+            android:layout_marginBottom="8dp" />
 
-    <TextView
-        android:id="@+id/tvTenTinh"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tên tỉnh"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="12sp" />
-</LinearLayout>
+        <TextView
+            android:id="@+id/tvTenMonAn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tên món ăn"
+            android:textColor="#1B1B1B"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginTop="4dp"/>
+
+        <TextView
+            android:id="@+id/tvTenTinh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tên tỉnh"
+            android:textColor="#813B25"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:layout_marginTop="2dp" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -5,5 +5,10 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <item name="queryBackground">@drawable/search_view_background</item>
+        <item name="searchIcon">@android:drawable/ic_menu_search</item>
+    </style>
+
     <style name="Theme.QuanLyAmThuc" parent="Base.Theme.QuanLyAmThuc" />
 </resources>

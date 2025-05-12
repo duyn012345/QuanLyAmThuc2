@@ -1,41 +1,70 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp">
+    android:padding="10dp"
+    android:background="@drawable/nen4">
 
+    <!-- TextView cho id người dùng -->
     <TextView
-        android:id="@+id/txtSoSao"
-        android:layout_width="wrap_content"
+        android:id="@+id/tvIdNguoiDung"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="★ 5/5"
-        android:textSize="16sp"
+        android:text="id nd "
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="4dp"
         android:textStyle="bold"
-        android:textColor="#FF9800"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
-
-    <TextView
-        android:id="@+id/txtNoiDung"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Nội dung đánh giá"
-        android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@id/txtSoSao"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="4dp"/>
-
-    <ImageView
-        android:id="@+id/imgDanhGia"
-        android:layout_width="0dp"
-        android:layout_height="150dp"
-        android:scaleType="centerCrop"
-        android:layout_marginTop="6dp"
-        app:layout_constraintTop_toBottomOf="@id/txtNoiDung"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <TextView
+        android:id="@+id/tvNgayNX"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Nội dung"
+        android:textSize="15sp"
+        android:textColor="#474646"
+        android:layout_marginTop="4dp"
+        app:layout_constraintTop_toBottomOf="@id/tvIdNguoiDung"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- TextView cho số sao -->
+    <TextView
+        android:id="@+id/tvSoSao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="⭐⭐⭐⭐⭐"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/tvNgayNX"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <!-- TextView cho nội dung -->
+    <TextView
+        android:id="@+id/tvNoiDung"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Nội dung"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="4dp"
+        app:layout_constraintTop_toBottomOf="@id/tvSoSao"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- ImageView cho hình ảnh đánh giá -->
+    <ImageView
+        android:id="@+id/imgDanhGia"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:visibility="gone"
+        android:layout_marginTop="6dp"
+        app:layout_constraintTop_toBottomOf="@id/tvNoiDung"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,4 +4,15 @@
     <color name="white">#FFFFFFFF</color>
     <color name="textColor">#008000</color>
     <color name="red">#D32F2F</color>
+    <color name="mau_vang_sao">#FFD700</color> <!-- màu vàng -->
+    <color name="colorPositive">#E4041E</color> <!-- Màu cam cho nút "Thêm" -->
+    <color name="colorNegative">#BA020A</color> <!-- Màu xanh cho nút "Hủy" -->
+    <color name="colorPrimary">#6200EE</color>
+
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="blue">#ff0099cc</color>
+    <color name="primary_color">#6200EE</color>
+
+
 </resources>

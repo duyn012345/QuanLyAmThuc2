@@ -13,7 +13,8 @@ import com.example.quanlyamthuc.model.MonAn
 class MonAnAdapter(
     private val listMonAn: List<MonAn>,
     private val onItemClick: (MonAn) -> Unit,
-    private val layoutId: Int = R.layout.item_mon_an // mặc định layout thường
+    private val layoutId: Int = R.layout.item_mon_an,
+    private val mapTenTinh: Map<String, String> = emptyMap()
 ) : RecyclerView.Adapter<MonAnAdapter.MonAnViewHolder>() {
 
 
@@ -32,19 +33,22 @@ class MonAnAdapter(
     override fun onBindViewHolder(holder: MonAnViewHolder, position: Int) {
         val monAn = listMonAn[position]
         holder.tvTenMonAn.text = monAn.tenma
-        holder.tvTenTinh.text = monAn.idtt
+
+
+        val tenTinh = mapTenTinh[monAn.idtt] ?: "Không rõ"
+        holder.tvTenTinh.text = tenTinh
 
         Glide.with(holder.itemView.context)
             .load(monAn.hinhanh)
-            .placeholder(R.drawable.bn3)
-            .error(R.drawable.bn4)
+            .placeholder(R.drawable.bn7)
+            .error(R.drawable.bn6)
             .into(holder.imgMonAn)
 
-        // Gán sự kiện click
         holder.itemView.setOnClickListener {
             onItemClick(monAn)
         }
     }
+
 
     override fun getItemCount(): Int = listMonAn.size
 }

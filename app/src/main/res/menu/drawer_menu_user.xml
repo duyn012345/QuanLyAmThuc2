@@ -1,0 +1,31 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/drawer_trang_chu"
+        android:icon="@drawable/ic_home"
+        android:title="Trang chủ" />
+
+    <item
+        android:id="@+id/drawer_mon_an"
+        android:icon="@drawable/food"
+        android:title="Món ăn" />
+
+    <item
+        android:id="@+id/drawer_dang_bai"
+        android:icon="@drawable/db"
+        android:title="Đăng bài" />
+
+    <item
+        android:id="@+id/drawer_lien_he"
+        android:icon="@drawable/phone"
+        android:title="Liên hệ" />
+
+    <item
+        android:id="@+id/drawer_dang_nhap"
+        android:icon="@drawable/login"
+        android:title="Đăng nhập" />
+
+    <item
+        android:id="@+id/drawer_dang_ky"
+        android:icon="@drawable/login"
+        android:title="Đăng ký" />
+</menu>

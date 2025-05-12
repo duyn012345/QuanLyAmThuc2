@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!-- Thêm Spinner chọn tỉnh -->
+    <Spinner
+        android:id="@+id/spinnerProvince"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone"/>
+
+    <EditText
+        android:id="@+id/dishImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="URL Hình ảnh"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/dishImage2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Link hình ảnh 2"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/dishImage3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Link hình ảnh 3"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/edtTenMon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tên món ăn"/>
+
+    <EditText
+        android:id="@+id/edtGioiThieu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Giới thiệu"/>
+
+    <EditText
+        android:id="@+id/edtGia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Giá"/>
+
+    <EditText
+        android:id="@+id/edtMoTa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mô tả"/>
+
+    <EditText
+        android:id="@+id/edtDiaChi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Địa chỉ"/>
+
+    <EditText
+        android:id="@+id/edtLink"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Link"/>
+
+</LinearLayout>

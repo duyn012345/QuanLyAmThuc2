@@ -9,12 +9,12 @@
     android:layout_gravity="center"
     android:backgroundTint="@android:color/white">
 
-<LinearLayout
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:orientation="vertical"
-android:gravity="center"
-android:padding="8dp">
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="8dp">
 
 <com.google.android.material.imageview.ShapeableImageView
     android:id="@+id/imgMonAn"
@@ -42,13 +42,14 @@ android:padding="8dp">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tên tỉnh"
-        android:textColor="#230901"
+        android:textColor="#525151"
         android:textSize="14sp"
         android:textStyle="bold"
         android:gravity="center"
         android:layout_marginTop="6dp"
         android:drawableStart="@drawable/address"
         android:drawablePadding="4dp"/>
+
 
 
 </LinearLayout>

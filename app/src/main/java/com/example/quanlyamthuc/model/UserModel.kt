@@ -1,7 +1,11 @@
 package com.example.quanlyamthuc.model
 
 data class UserModel(
-    val name: String = "",
-    val email: String = "",
-    val role: String = "user" // Giá trị mặc định là "user"
+    var idnd: String? = "",
+    var name: String = "",
+    var email: String = "",
+    var role: String = "user",
+    var phone: String = "",
+    var bio: String = "",
+    var avatarUrl: String = ""
 )

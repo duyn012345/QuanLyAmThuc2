@@ -1,31 +1,31 @@
 package com.example.quanlyamthuc.fragment
 
 import android.os.Bundle
+import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.quanlyamthuc.R
 import com.example.quanlyamthuc.adapter.MonAnAdapter
 import com.example.quanlyamthuc.databinding.FragmentMonAnBinding
 import com.example.quanlyamthuc.model.MonAn
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.example.quanlyamthuc.utils.StringUtils.removeVietnameseAccents
+import com.google.firebase.database.*
 
 class MonAnFragment : Fragment() {
 
+    private val mapTenTinh = mutableMapOf<String, String>()
+
     private var _binding: FragmentMonAnBinding? = null
     private val binding get() = _binding!!
+    private lateinit var monAnAdapter: MonAnAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,24 +43,97 @@ class MonAnFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Slider tổng hợp ảnh tĩnh
+        // Slider ảnh tổng hợp
         val danhSachAnhTongHop = arrayListOf(
-            SlideModel(R.drawable.bn4, ScaleTypes.FIT),
-            SlideModel(R.drawable.menu2, ScaleTypes.FIT),
-            SlideModel(R.drawable.menu3, ScaleTypes.FIT)
-
+            SlideModel(R.drawable.restorent, ScaleTypes.FIT),
+            SlideModel(R.drawable.bn8, ScaleTypes.FIT),
+            SlideModel(R.drawable.bn7, ScaleTypes.FIT)
         )
         binding.imageSlider.setImageList(danhSachAnhTongHop, ScaleTypes.FIT)
-        binding.imageSlider.startSliding(1500) // Bắt đầu auto slide 3s/lần
+        binding.imageSlider.startSliding(1500)
 
-        TatCaMonAn()
-        MonAnNoiTieng()
+        // Tải tên tỉnh trước khi hiển thị món ăn
+        taiDanhSachTinh {
+            TatCaMonAn()
+            MonAnNoiTieng()
+        }
+
+        binding.editTextSearch.setOnKeyListener { _, keyCode, event ->
+            if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                performSearch()
+                true
+            } else {
+                false
+            }
+        }
+
+    }
+
+    private fun taiDanhSachTinh(onFinish: () -> Unit) {
+        val dbTinh = FirebaseDatabase.getInstance("https://quanlyamthuc-tpmd-default-rtdb.asia-southeast1.firebasedatabase.app")
+            .getReference("14/data")
+
+        dbTinh.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (child in snapshot.children) {
+                    val tinh = child.getValue(com.example.quanlyamthuc.model.TinhThanh::class.java)
+                    if (tinh != null && tinh.idtt != null && tinh.tentinh != null) {
+                        mapTenTinh[tinh.idtt!!] = tinh.tentinh!!
+                    }
+                }
+                onFinish()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(requireContext(), "Không tải được danh sách tỉnh", Toast.LENGTH_SHORT).show()
+                onFinish()
+            }
+        })
+    }
+
+
+    private fun performSearch() {
+        val searchText = binding.editTextSearch.text.toString().trim()
+        if (searchText.isEmpty()) {
+            Toast.makeText(requireContext(), "Vui lòng nhập từ khóa tìm kiếm", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val normalizedSearchText = searchText.removeVietnameseAccents().lowercase()
+
+        // Kiểm tra xem từ khóa có trùng với tên tỉnh không
+        val matchedEntry = mapTenTinh.entries.firstOrNull {
+            it.value.removeVietnameseAccents().lowercase().contains(normalizedSearchText)
+        }
+
+        if (matchedEntry != null) {
+            // Tìm idtt tương ứng với tên tỉnh
+            val idTinh = matchedEntry.key
+            val tenTinh = matchedEntry.value
+            // Chuyển đến Fragment hiển thị danh sách món ăn theo tỉnh
+            val fragment = DanhSachMonAnTheoTinhFragment.newInstance(idTinh, tenTinh)
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
+                .commit()
+        } else {
+            // Nếu không phải tên tỉnh, tìm kiếm theo tên món ăn
+            val fragment = DanhSachMonAnTimKiemFragment.newInstance(searchText)
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
+                .commit()
+        }
+        binding.editTextSearch.setText("")
+
     }
 
     private fun MonAnNoiTieng() {
-        val database = FirebaseDatabase.getInstance("https://quanlyamthuc-tpmd-default-rtdb.asia-southeast1.firebasedatabase.app")
+        val database = FirebaseDatabase
+            .getInstance("https://quanlyamthuc-tpmd-default-rtdb.asia-southeast1.firebasedatabase.app")
+
         val danhSach = mutableListOf<MonAn>()
-        val nodesToFetch = listOf("10/data/1", "10/data/3", "10/data/0", "10/data/6", "10/data/10", "10/data/12", "10/data/15", "10/data/16", "10/data/17")
+        val nodesToFetch = listOf("10/data/0", "10/data/23", "10/data/10", "10/data/8", "10/data/15", "10/data/70", "10/data/50", "10/data/16", "10/data/17","10/data/59", "10/data/60", "10/data/65")
 
         for (node in nodesToFetch) {
             val dbRef = database.getReference(node)
@@ -69,8 +142,20 @@ class MonAnFragment : Fragment() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val monAn = snapshot.getValue(MonAn::class.java)
                     if (monAn != null) {
+                        monAn.tenTinh = mapTenTinh[monAn.idtt]
                         danhSach.add(monAn)
+                        Log.d("CheckMonAn", "IDTT: ${monAn.idtt}, Tên tỉnh: ${mapTenTinh[monAn.idtt]}")
+
+                        // Khi đã load xong tất cả node
                         if (danhSach.size == nodesToFetch.size) {
+                            if (danhSach.isEmpty()) {
+                                binding.txtThongBao.visibility = View.VISIBLE
+                                binding.txtThongBao.text = "Không có món ăn nào!"
+                            } else {
+                                binding.txtThongBao.visibility = View.GONE
+                            }
+
+                            // Gán adapter
                             val adapter = MonAnAdapter(
                                 danhSach,
                                 onItemClick = { monAn ->
@@ -80,13 +165,15 @@ class MonAnFragment : Fragment() {
                                         .addToBackStack(null)
                                         .commit()
                                 },
-                                layoutId = R.layout.item_mon_an_noi_tieng // dùng layout khác
+                                layoutId = R.layout.item_mon_an_noi_tieng,
+                                mapTenTinh = mapTenTinh
                             )
-                            binding.recyclerMonAn.layoutManager =
-                                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
+                            binding.recyclerMonAn.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
                             binding.recyclerMonAn.adapter = adapter
                         }
                     }
+
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -96,9 +183,10 @@ class MonAnFragment : Fragment() {
         }
     }
 
-
     private fun TatCaMonAn() {
-        val database = FirebaseDatabase.getInstance("https://quanlyamthuc-tpmd-default-rtdb.asia-southeast1.firebasedatabase.app")
+        val database = FirebaseDatabase
+            .getInstance("https://quanlyamthuc-tpmd-default-rtdb.asia-southeast1.firebasedatabase.app")
+
         val danhSach = mutableListOf<MonAn>()
         val dbRef = database.getReference("10/data")
 
@@ -108,6 +196,9 @@ class MonAnFragment : Fragment() {
                 for (monSnapshot in snapshot.children) {
                     val monAn = monSnapshot.getValue(MonAn::class.java)
                     if (monAn != null) {
+                        monAn.tenTinh = mapTenTinh[monAn.idtt]
+                        Log.d("CheckMonAn", "IDTT: ${monAn.idtt}, Tên tỉnh: ${mapTenTinh[monAn.idtt]}")
+
                         danhSach.add(monAn)
                     }
                 }
@@ -121,8 +212,10 @@ class MonAnFragment : Fragment() {
                             .addToBackStack(null)
                             .commit()
                     },
-                    layoutId = R.layout.item_mon_an // <- truyền đúng layout cần dùng
+                    layoutId = R.layout.item_mon_an,
+                    mapTenTinh = mapTenTinh
                 )
+
 
                 binding.recyclerTatCaMonAn.layoutManager = GridLayoutManager(requireContext(), 3)
                 binding.recyclerTatCaMonAn.adapter = adapter
@@ -133,34 +226,4 @@ class MonAnFragment : Fragment() {
             }
         })
     }
-
-//    private fun hienThiDialogThongTin(monAn: MonAn) {
-//        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_thong_tin_mon_an, null)
-//
-//        val slider = dialogView.findViewById<com.denzcoskun.imageslider.ImageSlider>(R.id.imageSliderChiTiet)
-//        val ten = dialogView.findViewById<TextView>(R.id.tvTenMonChiTiet)
-//        val tinh = dialogView.findViewById<TextView>(R.id.tvTinhChiTiet)
-//        val mota = dialogView.findViewById<TextView>(R.id.tvMoTaChiTiet)
-//
-//        val danhSachAnh = arrayListOf<SlideModel>()
-//
-//        monAn.hinhanh?.let { danhSachAnh.add(SlideModel(it, ScaleTypes.FIT)) }
-//        monAn.hinhanh2?.let { danhSachAnh.add(SlideModel(it, ScaleTypes.FIT)) }
-//        monAn.hinhanh3?.let { danhSachAnh.add(SlideModel(it, ScaleTypes.FIT)) }
-//
-//        slider.setImageList(danhSachAnh, ScaleTypes.FIT)
-//
-//        ten.text = monAn.tenma
-//        tinh.text = "Tỉnh: ${monAn.idtt}"
-//        mota.text = "Mô tả: ${monAn.mota}"
-//
-//        val builder = androidx.appcompat.app.AlertDialog.Builder(requireContext())
-//        builder.setView(dialogView)
-//            .setPositiveButton("Đóng") { dialog, _ -> dialog.dismiss() }
-//            .show()
-//    }
-
-
-
-
 }
