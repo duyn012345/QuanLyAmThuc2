@@ -19,6 +19,49 @@
             android:layout_marginTop="10dp"/>
 
         <GridLayout
+            android:id="@+id/grid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="1"
+            android:padding="16dp"
+            android:alignmentMode="alignMargins"
+            android:columnOrderPreserved="false">
+
+            <!-- Ô 2: Email -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                android:background="@drawable/whitebutton"
+                android:elevation="8dp"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:text="📬 Liên hệ với chúng tôi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:text="Nếu bạn có bất kỳ câu hỏi, phản hồi hoặc cần hỗ trợ, đừng ngần ngại gửi tin nhắn cho chúng tôi qua thông tin bên dưới."
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"/>
+            </LinearLayout>
+
+        </GridLayout>
+
+        <GridLayout
             android:id="@+id/gridlienhe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,7 +73,7 @@
             <!-- Ô 1: Hotline -->
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="200dp"
                 android:layout_columnWeight="1"
                 android:layout_margin="8dp"
                 android:background="@drawable/card_bg"
@@ -54,7 +97,8 @@
                     android:textStyle="bold"
                     android:layout_gravity="center"
                     android:layout_marginTop="8dp"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:textAlignment="center"/>
 
                 <TextView
                     android:text="0848 354 945\n0941 234 987"
@@ -66,49 +110,10 @@
                     android:textColor="#FFFFFF" />
             </LinearLayout>
 
-            <!-- Ô 2: Email -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_margin="8dp"
-                android:background="@drawable/card_bg"
-                android:elevation="8dp"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/mail"
-                    android:background="@drawable/icon_circle"
-                    android:padding="10dp" />
-
-                <TextView
-                    android:text="Email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="8dp"
-                    android:textColor="#FFFFFF" />
-
-                <TextView
-                    android:text="webcskh@gmail.com\nwebtvkh@gmail.com"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:layout_marginTop="4dp"
-                    android:textColor="#FFFFFF" />
-            </LinearLayout>
-
-            <!-- Ô 3: Social Media -->
             <LinearLayout
                 android:id="@+id/layoutSocialMedia"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="200dp"
                 android:layout_columnWeight="1"
                 android:layout_margin="8dp"
                 android:background="@drawable/card_bg"
@@ -132,7 +137,8 @@
                     android:textStyle="bold"
                     android:layout_gravity="center"
                     android:layout_marginTop="8dp"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:textAlignment="center"/>
 
                 <!-- TextView cho từng nền tảng -->
                 <TextView
@@ -172,8 +178,18 @@
                     android:focusable="true" />
             </LinearLayout>
 
+        </GridLayout>
 
-            <!-- Ô 4: Social Media (Thêm 1 ô nữa) -->
+        <GridLayout
+            android:id="@+id/gridLh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="1"
+            android:padding="16dp"
+            android:alignmentMode="alignMargins"
+            android:columnOrderPreserved="false">
+
+            <!-- Ô 2: Email -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -188,31 +204,74 @@
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/loading"
+                    android:src="@drawable/mail"
                     android:background="@drawable/icon_circle"
                     android:padding="10dp" />
 
                 <TextView
-                    android:text="Social media"
+                    android:text="Email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
                     android:textStyle="bold"
+                    android:textAlignment="center"
                     android:layout_gravity="center"
                     android:layout_marginTop="8dp"
                     android:textColor="#FFFFFF" />
 
                 <TextView
-                    android:text="FaceBook\nInstagram\nTiktok"
+                    android:text="webcskh@gmail.com\nwebtvkh@gmail.com"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:gravity="center"
+                    android:textSize="17sp"
                     android:layout_marginTop="4dp"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:textAlignment="center"/>
             </LinearLayout>
 
+
+            <!-- Ô 4: Social Media (Thêm 1 ô nữa) -->
+<!--            <LinearLayout-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_columnWeight="1"-->
+<!--                android:layout_margin="8dp"-->
+<!--                android:background="@drawable/card_bg"-->
+<!--                android:elevation="8dp"-->
+<!--                android:orientation="vertical"-->
+<!--                android:padding="16dp">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="48dp"-->
+<!--                    android:layout_height="48dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:src="@drawable/loading"-->
+<!--                    android:background="@drawable/icon_circle"-->
+<!--                    android:padding="10dp" />-->
+
+<!--                <TextView-->
+<!--                    android:text="Social media"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textSize="18sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_marginTop="8dp"-->
+<!--                    android:textColor="#FFFFFF" />-->
+
+<!--                <TextView-->
+<!--                    android:text="FaceBook\nInstagram\nTiktok"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textSize="15sp"-->
+<!--                    android:gravity="center"-->
+<!--                    android:layout_marginTop="4dp"-->
+<!--                    android:textColor="#FFFFFF" />-->
+<!--            </LinearLayout>-->
+
         </GridLayout>
+
+
 
 <!--        <GridLayout-->
 <!--            android:id="@+id/gridlydo"-->

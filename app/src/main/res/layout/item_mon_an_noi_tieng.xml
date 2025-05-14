@@ -24,7 +24,7 @@
             android:layout_height="120dp"
             android:scaleType="centerCrop"
             app:shapeAppearanceOverlay="@style/ShapeAppearance.MonAnHinhTron"
-            android:src="@drawable/bn1"
+            android:src="@drawable/loading"
             android:layout_marginBottom="8dp" />
 
         <TextView

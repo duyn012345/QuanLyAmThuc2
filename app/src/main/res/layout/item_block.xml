@@ -11,7 +11,8 @@
         android:orientation="vertical"
         android:padding="12dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/whitebutton">
 
         <TextView
             android:id="@+id/txtNguoiDang"
@@ -28,7 +29,8 @@
             android:textColor="#888888"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp" />
+            android:layout_marginTop="4dp"
+            android:text="Ngày đăng: "/>
 
         <!-- Hình ảnh món ăn -->
         <ImageView
@@ -77,16 +79,14 @@
                 android:layout_height="wrap_content"
                 android:textColor="#FF0000"
                 android:textSize="14sp" />
-
+        </LinearLayout>
             <!-- Dấu phân cách và tỉnh -->
-            <TextView
-                android:text=" • "
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:textSize="14sp"
-                android:textColor="#888888" />
-
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical">
             <ImageView
                 android:src="@drawable/ic_location"
                 android:layout_width="20dp"

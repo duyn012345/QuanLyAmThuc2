@@ -116,7 +116,7 @@ class ProfileFragment : Fragment() {
         } else {
             // Thoát chế độ chỉnh sửa
             layoutEdit.visibility = View.GONE
-            btnEdit.setImageResource(R.drawable.ic_edit)
+            btnEdit.setImageResource(R.drawable.baseline_edit_24)
         }
     }
 

@@ -23,7 +23,7 @@
     android:layout_marginBottom="8dp"
     android:layout_gravity="center"
     android:scaleType="centerCrop"
-    android:src="@drawable/bn1"
+    android:src="@drawable/loading"
     app:shapeAppearanceOverlay="@style/ShapeAppearance.MonAnBoTron" />
 
 <TextView

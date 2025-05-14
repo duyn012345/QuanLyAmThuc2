@@ -4,12 +4,15 @@
     android:layout_margin="8dp"
     android:layout_height="wrap_content"
     android:elevation="4dp"
-    android:padding="8dp">
+    android:padding="8dp"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@drawable/whitebutton">
 
         <!-- Tên người dùng và avatar -->
         <LinearLayout
@@ -76,14 +79,15 @@
             android:id="@+id/txtSoSao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="★★★★★"
+            android:text="⭐⭐⭐⭐⭐"
             android:textSize="14sp"
-            android:textColor="#666" />
+            android:textColor="#666"
+            android:src="@drawable/star3"/>
 
         <ImageView
             android:id="@+id/delButton"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
             android:layout_gravity="end"
             android:src="@drawable/ic_delete"
             android:contentDescription="Xóa đánh giá"

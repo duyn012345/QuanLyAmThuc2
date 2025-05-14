@@ -43,13 +43,27 @@
             android:padding="8dp"
             android:layout_marginBottom="12dp" />
 
-        <EditText
-            android:id="@+id/edtLinkAnh"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Thêm ảnh món ăn"
-            android:inputType="textUri"
-            android:background="@android:drawable/edit_text"
-            android:padding="8dp" />
+            android:orientation="vertical"
+            android:layout_marginTop="8dp">
+
+            <ImageView
+                android:id="@+id/imgPreview"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="8dp"
+                android:visibility="gone" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnChonAnh"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:text="Chọn ảnh từ thư viện"
+                android:textColor="@color/colorNegative" />
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

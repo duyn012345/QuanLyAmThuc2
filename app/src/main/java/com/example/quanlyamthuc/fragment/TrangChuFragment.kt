@@ -48,9 +48,9 @@ class TrangChuFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val danhSachAnhTongHop = arrayListOf(
-            SlideModel(R.drawable.bn2, ScaleTypes.FIT),
+            SlideModel(R.drawable.bn222, ScaleTypes.FIT),
             SlideModel(R.drawable.bn6, ScaleTypes.FIT) ,
-            SlideModel(R.drawable.bn1, ScaleTypes.FIT),
+            SlideModel(R.drawable.bn11, ScaleTypes.FIT),
             SlideModel(R.drawable.bn7, ScaleTypes.FIT)
         )
         binding.imageSlider.setImageList(danhSachAnhTongHop, ScaleTypes.FIT)

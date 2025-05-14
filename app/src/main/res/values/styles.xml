@@ -5,6 +5,12 @@
         <item name="cornerSize">50%</item>
     </style>
 
+    <style name="ToolbarTitleRedSmall" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textColor">#FF0000</item> <!-- Màu đỏ -->
+        <item name="android:textSize">20sp</item>     <!-- Kích thước nhỏ hơn mặc định -->
+        <item name="android:textStyle">bold</item>    <!-- Nếu cần chữ đậm -->
+    </style>
+
 
     <style name="ContactCard">
         <item name="android:layout_width">match_parent</item>

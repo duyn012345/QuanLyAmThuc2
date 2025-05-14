@@ -306,11 +306,11 @@
             android:layout_height="wrap_content"
             android:text="\nẨm thực miền Trung Việt Nam\nNổi tiếng với sự phong phú và hương vị độc đáo, thể hiện rõ nét văn hóa và lối sống của người dân nơi đây. Với dải đất hẹp kéo dài từ Thanh Hóa đến Bình Thuận, miền Trung mang trong mình nhiều món ăn đặc trưng, từ bún bò Huế đậm đà, mì Quảng giản dị nhưng tinh tế, đến bánh bèo, bánh nậm mang vị ngọt nhẹ nhàng.\nMỗi món ăn miền Trung đều không chỉ là một phần ăn mà là một trải nghiệm về hương vị, về sự khéo léo trong từng công đoạn chế biến, từ việc lựa chọn nguyên liệu cho đến cách bày trí. Sự cân bằng tuyệt vời giữa mặn, ngọt, cay và chua khiến các món ăn nơi đây luôn hấp dẫn thực khách, dù là những bữa cơm gia đình đầm ấm hay những bữa tiệc thịnh soạn. Với một thực đơn như vậy, ẩm thực miền Trung không chỉ làm say lòng người mà còn mở ra một hành trình khám phá đầy thú vị, để hiểu thêm về con người và nền văn hóa độc đáo của mảnh đất này."
             android:textSize="18sp"
-            android:textStyle="bold"
             android:gravity="center"
-            android:fontFamily="cursive"
             android:textColor="#5B020B"
             android:paddingBottom="25dp" />
+<!--        android:fontFamily="cursive"-->
+
 
         <TextView
             android:id="@+id/cacmonnt"

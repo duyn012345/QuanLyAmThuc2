@@ -32,8 +32,8 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val imageList = ArrayList<SlideModel>()
-        imageList.add(SlideModel(R.drawable.banner1, ScaleTypes.FIT))
-        imageList.add(SlideModel(R.drawable.banner2, ScaleTypes.FIT))
+        imageList.add(SlideModel(R.drawable.bn11, ScaleTypes.FIT))
+        imageList.add(SlideModel(R.drawable.bn222, ScaleTypes.FIT))
         imageList.add(SlideModel(R.drawable.banner3, ScaleTypes.FIT))
         imageList.add(SlideModel(R.drawable.banner4, ScaleTypes.FIT))
 

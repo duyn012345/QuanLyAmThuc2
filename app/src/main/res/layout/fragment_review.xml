@@ -4,7 +4,20 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp">
+    android:padding="8dp"
+    android:background="#FAF3EA">
+
+    <TextView
+        android:id="@+id/toolbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
+        android:layout_gravity="center"
+        android:text="Danh sách đánh giá"
+        android:layout_marginTop="5dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/red"/>
 
     <EditText
         android:id="@+id/searchView"
@@ -12,7 +25,6 @@
         android:layout_height="wrap_content"
         android:hint="Tìm kiếm đánh giá..."
         android:drawableStart="@android:drawable/ic_menu_search"
-
         />
 
     <TextView
@@ -57,7 +69,7 @@
         <ScrollView
             android:id="@+id/scrollViewThongKe"
             android:layout_width="match_parent"
-            android:layout_height="210dp"
+            android:layout_height="130dp"
             android:scrollbars="vertical">
 
             <LinearLayout

@@ -19,13 +19,19 @@
         android:icon="@drawable/phone"
         android:title="Liên hệ" />
 
-    <item
-        android:id="@+id/drawer_dang_nhap"
-        android:icon="@drawable/login"
-        android:title="Đăng nhập" />
+<!--    <item-->
+<!--        android:id="@+id/drawer_dang_nhap"-->
+<!--        android:icon="@drawable/login"-->
+<!--        android:title="Đăng nhập" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/drawer_dang_ky"-->
+<!--        android:icon="@drawable/login"-->
+<!--        android:title="Đăng ký" />-->
 
     <item
-        android:id="@+id/drawer_dang_ky"
+        android:id="@+id/drawer_dang_xuat"
         android:icon="@drawable/login"
-        android:title="Đăng ký" />
+        android:title="Đăng xuất" />
+
 </menu>

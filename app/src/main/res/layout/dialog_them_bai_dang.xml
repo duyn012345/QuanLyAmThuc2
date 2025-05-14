@@ -63,19 +63,35 @@
                 android:background="@drawable/khung_dialog_danhgia"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp">
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginBottom="12dp">-->
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtHinhAnh"
-                android:hint="Link hình ảnh món ăn"
-                android:inputType="textUri"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/khung_dialog_danhgia"/>
-        </com.google.android.material.textfield.TextInputLayout>
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:id="@+id/edtHinhAnh"-->
+<!--                android:hint="Link hình ảnh món ăn"-->
+<!--                android:inputType="textUri"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@drawable/khung_dialog_danhgia"/>-->
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
 
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/imgSelectedImage"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:visibility="gone" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnChooseImage"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        android:text="Chọn ảnh từ thư viện"
+        android:textColor="@color/colorNegative" />
+
+</LinearLayout>
 </ScrollView>

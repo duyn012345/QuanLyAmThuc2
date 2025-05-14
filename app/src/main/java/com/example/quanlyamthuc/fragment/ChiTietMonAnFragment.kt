@@ -1,6 +1,8 @@
 package com.example.quanlyamthuc.fragment
 
+import android.app.Activity
 import android.app.AlertDialog
+import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -8,12 +10,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.quanlyamthuc.LoginActivity
@@ -23,6 +28,7 @@ import com.example.quanlyamthuc.databinding.FragmentChiTietMonAnBinding
 import com.example.quanlyamthuc.model.DanhGia
 import com.example.quanlyamthuc.model.MonAn
 import com.example.quanlyamthuc.model.TinhThanh
+import com.example.quanlyamthuc.services.FirebaseService
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -33,12 +39,19 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
+
 class ChiTietMonAnFragment : Fragment() {
 
     private var _binding: FragmentChiTietMonAnBinding? = null
     private val binding get() = _binding!!
+    private var selectedImageUri: Uri? = null
+    private var imgPreview: ImageView? = null
+
+   // private val REQUEST_CODE_PICK_IMAGE = 1001
+    private var dialog: AlertDialog? = null
 
     companion object {
+        private const val REQUEST_CODE_PICK_IMAGE = 1001
         fun newInstance(monAn: MonAn): ChiTietMonAnFragment {
             val fragment = ChiTietMonAnFragment()
             val bundle = Bundle()
@@ -198,8 +211,6 @@ class ChiTietMonAnFragment : Fragment() {
             }
     }
 
-
-
     private fun showDanhGiaDialog(idma: String, uid: String) {
         val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_danhgia, null)
         val dialog = AlertDialog.Builder(requireContext())
@@ -209,54 +220,166 @@ class ChiTietMonAnFragment : Fragment() {
             .setNegativeButton("Hủy", null)
             .create()
 
+         imgPreview = dialogView.findViewById(R.id.imgPreview)
+        val btnChonAnh = dialogView.findViewById<Button>(R.id.btnChonAnh)
+        //val edtLinkAnh = dialogView.findViewById<EditText>(R.id.edtLinkAnh)
+
+        btnChonAnh.setOnClickListener {
+            // Mở thư viện ảnh
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.type = "image/*"
+            startActivityForResult(intent, REQUEST_CODE_PICK_IMAGE)
+        }
+
         dialog.setOnShowListener {
             val btnPositive = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
             val btnNegative = dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
 
-            // Đổi màu cho nút "Thêm"
             btnPositive.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorPositive))
-
-            // Đổi màu cho nút "Hủy"
             btnNegative.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorNegative))
 
             btnPositive.setOnClickListener {
                 val soSao = dialogView.findViewById<RatingBar>(R.id.ratingBar).rating.toInt()
                 val noiDung = dialogView.findViewById<EditText>(R.id.edtNoiDung).text.toString()
-                val hinhanh = dialogView.findViewById<EditText>(R.id.edtLinkAnh).text.toString()
 
                 if (noiDung.isBlank()) {
                     Toast.makeText(requireContext(), "Vui lòng nhập nội dung đánh giá", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
 
-                val danhGiaRef = FirebaseDatabase.getInstance("https://quanlyamthuc-tpmd-default-rtdb.asia-southeast1.firebasedatabase.app")
-                    .getReference("5/data")
+                if (selectedImageUri != null) {
+                    // Hiển thị progress dialog trong khi upload
+                    val progressDialog = ProgressDialog(requireContext()).apply {
+                        setMessage("Đang tải ảnh lên...")
+                        setCancelable(false)
+                        show()
+                    }
 
-                val iddg = danhGiaRef.push().key ?: return@setOnClickListener
-                val createdAt = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
+                    // Upload ảnh lên Cloudinary
+                    FirebaseService.uploadImage(requireContext(), selectedImageUri!!) { imageUrl ->
+                        progressDialog.dismiss()
 
-                val danhGia = mapOf(
-                    "iddg" to iddg,
-                    "idma" to idma,
-                    "idnd" to uid,
-                    "so_sao" to soSao.toString(),
-                    "noi_dung" to noiDung,
-                    "hinhanh_danhgia" to hinhanh,
-                    "created_at" to createdAt,
-                    "updated_at" to createdAt
-                )
-
-                danhGiaRef.child(iddg).setValue(danhGia).addOnSuccessListener {
-                    Toast.makeText(requireContext(), "Đã thêm đánh giá", Toast.LENGTH_SHORT).show()
-                    dialog.dismiss()
-                }.addOnFailureListener {
-                    Toast.makeText(requireContext(), "Lỗi khi thêm đánh giá", Toast.LENGTH_SHORT).show()
+                        if (imageUrl != null) {
+                            saveDanhGiaToFirebase(dialog, idma, uid, soSao, noiDung, imageUrl)
+                        } else {
+                            Toast.makeText(requireContext(), "Lỗi khi tải ảnh lên", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                } else {
+                    // Nếu không có ảnh, lưu đánh giá không có ảnh
+                    saveDanhGiaToFirebase(dialog, idma, uid, soSao, noiDung, null)
                 }
             }
         }
 
         dialog.show()
     }
+
+    private fun saveDanhGiaToFirebase(
+        dialog: AlertDialog,
+        idma: String,
+        uid: String,
+        soSao: Int,
+        noiDung: String,
+        imageUrl: String?
+    ) {
+        val danhGiaRef = FirebaseDatabase.getInstance("https://quanlyamthuc-tpmd-default-rtdb.asia-southeast1.firebasedatabase.app")
+            .getReference("5/data")
+
+        val iddg = danhGiaRef.push().key ?: return
+        val createdAt = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
+
+        val danhGia = mapOf(
+            "iddg" to iddg,
+            "idma" to idma,
+            "idnd" to uid,
+            "so_sao" to soSao.toString(),
+            "noi_dung" to noiDung,
+            "hinhanh_danhgia" to imageUrl,
+            "created_at" to createdAt,
+            "updated_at" to createdAt
+        )
+
+        danhGiaRef.child(iddg).setValue(danhGia).addOnSuccessListener {
+            Toast.makeText(requireContext(), "Đã thêm đánh giá", Toast.LENGTH_SHORT).show()
+            dialog.dismiss()
+        }.addOnFailureListener {
+            Toast.makeText(requireContext(), "Lỗi khi thêm đánh giá", Toast.LENGTH_SHORT).show()
+        }
+    }
+//
+//    companion object {
+//        private const val REQUEST_CODE_PICK_IMAGE = 1001
+//    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE_PICK_IMAGE && resultCode == Activity.RESULT_OK && data != null) {
+            selectedImageUri = data.data
+            imgPreview?.let {
+                it.visibility = View.VISIBLE
+                Glide.with(requireContext()).load(selectedImageUri).into(it)
+            }
+        }
+    }
+
+
+//    private fun showDanhGiaDialog(idma: String, uid: String) {
+//        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_danhgia, null)
+//        val dialog = AlertDialog.Builder(requireContext())
+//            .setTitle("Thêm đánh giá")
+//            .setView(dialogView)
+//            .setPositiveButton("Thêm", null)
+//            .setNegativeButton("Hủy", null)
+//            .create()
+//
+//        dialog.setOnShowListener {
+//            val btnPositive = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+//            val btnNegative = dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+//
+//            // Đổi màu cho nút "Thêm"
+//            btnPositive.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorPositive))
+//
+//            // Đổi màu cho nút "Hủy"
+//            btnNegative.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorNegative))
+//
+//            btnPositive.setOnClickListener {
+//                val soSao = dialogView.findViewById<RatingBar>(R.id.ratingBar).rating.toInt()
+//                val noiDung = dialogView.findViewById<EditText>(R.id.edtNoiDung).text.toString()
+//                val hinhanh = dialogView.findViewById<EditText>(R.id.edtLinkAnh).text.toString()
+//
+//                if (noiDung.isBlank()) {
+//                    Toast.makeText(requireContext(), "Vui lòng nhập nội dung đánh giá", Toast.LENGTH_SHORT).show()
+//                    return@setOnClickListener
+//                }
+//
+//                val danhGiaRef = FirebaseDatabase.getInstance("https://quanlyamthuc-tpmd-default-rtdb.asia-southeast1.firebasedatabase.app")
+//                    .getReference("5/data")
+//
+//                val iddg = danhGiaRef.push().key ?: return@setOnClickListener
+//                val createdAt = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
+//
+//                val danhGia = mapOf(
+//                    "iddg" to iddg,
+//                    "idma" to idma,
+//                    "idnd" to uid,
+//                    "so_sao" to soSao.toString(),
+//                    "noi_dung" to noiDung,
+//                    "hinhanh_danhgia" to hinhanh,
+//                    "created_at" to createdAt,
+//                    "updated_at" to createdAt
+//                )
+//
+//                danhGiaRef.child(iddg).setValue(danhGia).addOnSuccessListener {
+//                    Toast.makeText(requireContext(), "Đã thêm đánh giá", Toast.LENGTH_SHORT).show()
+//                    dialog.dismiss()
+//                }.addOnFailureListener {
+//                    Toast.makeText(requireContext(), "Lỗi khi thêm đánh giá", Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//        }
+//
+//        dialog.show()
+//    }
 
 
     override fun onDestroyView() {

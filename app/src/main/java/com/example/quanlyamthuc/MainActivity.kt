@@ -71,18 +71,16 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
-
-        // Xử lý menu drawer
         navigationView.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.nav_home -> replaceFragment(HomeFragment())
-                R.id.nav_province -> replaceFragment(ProvinceFragment())
-                R.id.nav_dish -> replaceFragment(DishFragment())
-                R.id.nav_block -> replaceFragment(BlockFragment())
-                R.id.nav_review -> replaceFragment(ReviewFragment())
-
-                R.id.nav_user -> replaceFragment(UserFragment())
-                R.id.nav_exit -> {
+                R.id.drawer_trang_chu -> replaceFragment(TrangChuFragment())
+                R.id.drawer_mon_an -> replaceFragment(MonAnFragment())
+                R.id.drawer_dang_bai -> replaceFragment(DangBaiFragment())
+                R.id.drawer_lien_he -> replaceFragment(LienHeFragment())
+//                R.id.drawer_dang_nhap -> replaceFragment(ReviewFragment())
+//
+//                R.id.drawer_dang_ky -> replaceFragment(UserFragment())
+                R.id.drawer_dang_xuat -> {
                     val intent = Intent(this, LoginActivity::class.java)
                     startActivity(intent)
                     finish() // nếu muốn thoát khỏi Activity hiện tại
@@ -91,6 +89,27 @@ class MainActivity : AppCompatActivity() {
             drawerLayout.closeDrawer(GravityCompat.START)
             true
         }
+
+        // Xử lý menu drawer
+//        navigationView.setNavigationItemSelectedListener { item ->
+//            when (item.itemId) {
+//                R.id.nav_home -> replaceFragment(HomeFragment())
+//                R.id.nav_province -> replaceFragment(ProvinceFragment())
+//                R.id.nav_dish -> replaceFragment(DishFragment())
+//                R.id.nav_block -> replaceFragment(BlockFragment())
+//                R.id.nav_review -> replaceFragment(ReviewFragment())
+//
+//                R.id.nav_user -> replaceFragment(UserFragment())
+//                R.id.nav_exit -> {
+//                    val intent = Intent(this, LoginActivity::class.java)
+//                    startActivity(intent)
+//                    finish() // nếu muốn thoát khỏi Activity hiện tại
+//                }
+//            }
+//            drawerLayout.closeDrawer(GravityCompat.START)
+//            true
+//        }
+
     }
 
     // Hàm thay fragment trong FrameLayout

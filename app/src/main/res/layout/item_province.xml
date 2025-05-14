@@ -41,17 +41,17 @@
 
             <ImageButton
                 android:id="@+id/btnEdit"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:background="@android:color/transparent"
                 android:contentDescription="Sửa"
                 android:padding="8dp"
-                android:src="@drawable/ic_edit" />
+                android:src="@drawable/baseline_edit_24" />
 
             <ImageButton
                 android:id="@+id/btnDelete"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
+                android:layout_width="30dp"
+                android:layout_height="33dp"
                 android:background="@android:color/transparent"
                 android:contentDescription="Xóa"
                 android:src="@drawable/ic_delete" />

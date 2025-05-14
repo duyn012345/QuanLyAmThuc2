@@ -4,69 +4,159 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <TextView
+        android:text="Thêm món ăn mới"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="12dp"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/colorNegative"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"/>
+
     <!-- Thêm Spinner chọn tỉnh -->
     <Spinner
         android:id="@+id/spinnerProvince"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
-    <EditText
-        android:id="@+id/dishImage"
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="URL Hình ảnh"
-        android:inputType="text" />
+        android:layout_marginBottom="10dp">
 
-    <EditText
-        android:id="@+id/dishImage2"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/dishImage"
+            android:hint="URL Hình 1"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/khung_dialog_danhgia"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Link hình ảnh 2"
-        android:inputType="text"/>
+        android:layout_marginBottom="10dp">
 
-    <EditText
-        android:id="@+id/dishImage3"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/dishImage2"
+            android:hint="URL Hình 2"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/khung_dialog_danhgia"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Link hình ảnh 3"
-        android:inputType="text"/>
+        android:layout_marginBottom="10dp">
 
-    <EditText
-        android:id="@+id/edtTenMon"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/dishImage3"
+            android:hint="URL Hình 3"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/khung_dialog_danhgia"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Tên món ăn"/>
+        android:layout_marginBottom="10dp">
 
-    <EditText
-        android:id="@+id/edtGioiThieu"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtTenMon"
+            android:hint="Tên món ăn"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/khung_dialog_danhgia"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Giới thiệu"/>
+        android:layout_marginBottom="10dp">
 
-    <EditText
-        android:id="@+id/edtGia"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtGioiThieu"
+            android:hint="Giới thiệu"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/khung_dialog_danhgia"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Giá"/>
+        android:layout_marginBottom="10dp">
 
-    <EditText
-        android:id="@+id/edtMoTa"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtGia"
+            android:hint="Giá"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/khung_dialog_danhgia"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Mô tả"/>
+        android:layout_marginBottom="10dp">
 
-    <EditText
-        android:id="@+id/edtDiaChi"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtMoTa"
+            android:hint="Mô tả"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/khung_dialog_danhgia"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Địa chỉ"/>
+        android:layout_marginBottom="10dp">
 
-    <EditText
-        android:id="@+id/edtLink"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtDiaChi"
+            android:hint="Địa chỉ"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/khung_dialog_danhgia"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Link"/>
+        android:layout_marginBottom="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtLink"
+            android:hint="Link"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/khung_dialog_danhgia"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 </LinearLayout>

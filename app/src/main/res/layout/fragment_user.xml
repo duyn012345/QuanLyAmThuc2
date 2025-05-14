@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white">
+    android:background="#FAF3EA">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Danh sách người dùng"
-            android:textColor="@android:color/black"
+            android:textColor="@color/red"
             android:textSize="20sp"
             android:textStyle="bold"
             android:gravity="center"
@@ -40,7 +40,8 @@
         android:layout_height="wrap_content"
         android:queryHint="Tìm kiếm theo tên..."
         android:iconifiedByDefault="false"
-        android:layout_margin="8dp"/>
+
+        android:background="@drawable/khung_dialog_danhgia" />
 
     <TextView
         android:id="@+id/emptyView"
@@ -56,6 +57,7 @@
         android:layout_height="match_parent"
         android:clipToPadding="false"
         android:paddingTop="8dp"
+        android:layout_margin="8dp"
         android:paddingBottom="8dp"/>
 
 </LinearLayout>
