@@ -15,7 +15,7 @@
             android:scaleType="centerCrop"
             android:src="@drawable/nen6"
             android:contentDescription="Ảnh liên hệ"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="0dp"
             android:layout_marginTop="10dp"/>
 
         <GridLayout
@@ -23,18 +23,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:columnCount="1"
-            android:padding="16dp"
+            android:padding="8dp"
+            android:layout_marginTop="0dp"
             android:alignmentMode="alignMargins"
             android:columnOrderPreserved="false">
 
-            <!-- Ô 2: Email -->
-            <LinearLayout
+
+        <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
                 android:layout_margin="8dp"
                 android:background="@drawable/whitebutton"
-                android:elevation="8dp"
+                android:elevation="20dp"
                 android:orientation="vertical"
                 android:padding="16dp">
 
@@ -66,7 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:columnCount="2"
-            android:padding="16dp"
+            android:padding="10dp"
             android:alignmentMode="alignMargins"
             android:columnOrderPreserved="false">
 
@@ -185,11 +186,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:columnCount="1"
-            android:padding="16dp"
+            android:padding="10dp"
+            android:layout_marginTop="1dp"
             android:alignmentMode="alignMargins"
             android:columnOrderPreserved="false">
 
-            <!-- Ô 2: Email -->
+
+        <!-- Ô 2: Email -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -228,213 +231,7 @@
                     android:textColor="#FFFFFF"
                     android:textAlignment="center"/>
             </LinearLayout>
-
-
-            <!-- Ô 4: Social Media (Thêm 1 ô nữa) -->
-<!--            <LinearLayout-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_columnWeight="1"-->
-<!--                android:layout_margin="8dp"-->
-<!--                android:background="@drawable/card_bg"-->
-<!--                android:elevation="8dp"-->
-<!--                android:orientation="vertical"-->
-<!--                android:padding="16dp">-->
-
-<!--                <ImageView-->
-<!--                    android:layout_width="48dp"-->
-<!--                    android:layout_height="48dp"-->
-<!--                    android:layout_gravity="center"-->
-<!--                    android:src="@drawable/loading"-->
-<!--                    android:background="@drawable/icon_circle"-->
-<!--                    android:padding="10dp" />-->
-
-<!--                <TextView-->
-<!--                    android:text="Social media"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:textSize="18sp"-->
-<!--                    android:textStyle="bold"-->
-<!--                    android:layout_gravity="center"-->
-<!--                    android:layout_marginTop="8dp"-->
-<!--                    android:textColor="#FFFFFF" />-->
-
-<!--                <TextView-->
-<!--                    android:text="FaceBook\nInstagram\nTiktok"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:textSize="15sp"-->
-<!--                    android:gravity="center"-->
-<!--                    android:layout_marginTop="4dp"-->
-<!--                    android:textColor="#FFFFFF" />-->
-<!--            </LinearLayout>-->
-
         </GridLayout>
-
-
-
-<!--        <GridLayout-->
-<!--            android:id="@+id/gridlydo"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:columnCount="1"-->
-<!--            android:padding="16dp"-->
-<!--            android:alignmentMode="alignMargins"-->
-<!--            android:columnOrderPreserved="false">-->
-
-<!--    &lt;!&ndash; Ô 1: Hotline &ndash;&gt;-->
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="8dp"-->
-<!--                android:background="@drawable/card_bg"-->
-<!--                android:elevation="8dp"-->
-<!--                android:orientation="vertical"-->
-<!--                android:padding="16dp">-->
-
-<!--                <ImageView-->
-<!--                    android:layout_width="48dp"-->
-<!--                    android:layout_height="48dp"-->
-<!--                    android:layout_gravity="center"-->
-<!--                    android:src="@drawable/food2"-->
-<!--                    android:background="@drawable/icon_circle"-->
-<!--                    android:padding="10dp" />-->
-
-<!--                <TextView-->
-<!--                    android:text="Ẩm thực đa dạng"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:textSize="18sp"-->
-<!--                    android:textStyle="bold"-->
-<!--                    android:gravity="center"-->
-<!--                    android:layout_marginTop="8dp"-->
-<!--                    android:textColor="#FFFFFF" />-->
-
-<!--                <TextView-->
-<!--                    android:text="Khám phá hơn 100 món ăn đặc sản miền Trung, từ truyền thống đến hiện đại."-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:textSize="15sp"-->
-<!--                    android:gravity="center"-->
-<!--                    android:layout_marginTop="4dp"-->
-<!--                    android:textColor="#FFFFFF" />-->
-<!--            </LinearLayout>-->
-
-<!--            &lt;!&ndash; Ô 2: Email &ndash;&gt;-->
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="8dp"-->
-<!--                android:background="@drawable/card_bg"-->
-<!--                android:elevation="8dp"-->
-<!--                android:orientation="vertical"-->
-<!--                android:padding="16dp">-->
-
-<!--                <ImageView-->
-<!--                    android:layout_width="48dp"-->
-<!--                    android:layout_height="48dp"-->
-<!--                    android:layout_gravity="center"-->
-<!--                    android:src="@drawable/star2"-->
-<!--                    android:background="@drawable/icon_circle"-->
-<!--                    android:padding="10dp" />-->
-
-<!--                <TextView-->
-<!--                    android:text="Chất lượng cao"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:textSize="18sp"-->
-<!--                    android:textStyle="bold"-->
-<!--                    android:gravity="center"-->
-<!--                    android:layout_marginTop="8dp"-->
-<!--                    android:textColor="#FFFFFF" />-->
-
-<!--                <TextView-->
-<!--                    android:text="Nguyên liệu tươi ngon, đảm bảo chất lượng trong từng món ăn."-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:gravity="center"-->
-<!--                    android:textSize="15sp"-->
-<!--                    android:layout_marginTop="4dp"-->
-<!--                    android:textColor="#FFFFFF" />-->
-<!--            </LinearLayout>-->
-
-<!--            &lt;!&ndash; Ô 3: Social Media &ndash;&gt;-->
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="8dp"-->
-<!--                android:background="@drawable/card_bg"-->
-<!--                android:elevation="8dp"-->
-<!--                android:orientation="vertical"-->
-<!--                android:padding="16dp">-->
-
-<!--                <ImageView-->
-<!--                    android:layout_width="48dp"-->
-<!--                    android:layout_height="48dp"-->
-<!--                    android:layout_gravity="center"-->
-<!--                    android:src="@drawable/search"-->
-<!--                    android:background="@drawable/icon_circle"-->
-<!--                    android:padding="10dp" />-->
-
-<!--                <TextView-->
-<!--                    android:text="Dễ dàng tìm kiếm"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:textSize="18sp"-->
-<!--                    android:textStyle="bold"-->
-<!--                    android:gravity="center"-->
-<!--                    android:layout_marginTop="8dp"-->
-<!--                    android:textColor="#FFFFFF" />-->
-
-<!--                <TextView-->
-<!--                    android:text="Công cụ tìm kiếm nhanh chóng theo từng tỉnh và từng món ăn."-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:textSize="15sp"-->
-<!--                    android:gravity="center"-->
-<!--                    android:layout_marginTop="4dp"-->
-<!--                    android:textColor="#FFFFFF" />-->
-<!--            </LinearLayout>-->
-
-<!--            &lt;!&ndash; Ô 4: Social Media (Thêm 1 ô nữa) &ndash;&gt;-->
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="8dp"-->
-<!--                android:background="@drawable/card_bg"-->
-<!--                android:elevation="8dp"-->
-<!--                android:orientation="vertical"-->
-<!--                android:padding="16dp">-->
-
-<!--                <ImageView-->
-<!--                    android:layout_width="48dp"-->
-<!--                    android:layout_height="48dp"-->
-<!--                    android:layout_gravity="center"-->
-<!--                    android:src="@drawable/star3"-->
-<!--                    android:background="@drawable/icon_circle"-->
-<!--                    android:padding="10dp" />-->
-
-<!--                <TextView-->
-<!--                    android:text="Đánh giá uy tín"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:textSize="18sp"-->
-<!--                    android:textStyle="bold"-->
-<!--                    android:gravity="center"-->
-<!--                    android:layout_marginTop="8dp"-->
-<!--                    android:textColor="#FFFFFF" />-->
-
-<!--                <TextView-->
-<!--                    android:text="Nhận được nhiều đánh giá tích cực từ cộng đồng yêu ẩm thực."-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:textSize="15sp"-->
-<!--                    android:gravity="center"-->
-<!--                    android:layout_marginTop="4dp"-->
-<!--                    android:textColor="#FFFFFF" />-->
-<!--            </LinearLayout>-->
-
-<!--        </GridLayout>-->
 
     </LinearLayout>
 

@@ -214,7 +214,7 @@
                     android:layout_height="wrap_content"
                     android:text="Chọn ảnh đại diện"
                     android:layout_marginBottom="8dp"
-                    android:background="@drawable/redbutton"/>
+                    android:backgroundTint="@color/red" />
 
                 <EditText
                     android:id="@+id/edtName"
@@ -244,7 +244,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Lưu thông tin"
-                    android:src="@drawable/ic_save"/>
+                    android:src="@drawable/ic_save"
+                    android:backgroundTint="@color/red" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
