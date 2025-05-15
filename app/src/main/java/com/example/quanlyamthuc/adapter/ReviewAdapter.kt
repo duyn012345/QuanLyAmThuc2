@@ -19,10 +19,10 @@ class ReviewAdapter(
     private val onDeleteClick: (ReviewModel) -> Unit
 ) : RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder>() {
 
-    private var tenNguoiDungMap = mapOf<String, String>()
+    private var tenNguoiDungMap = mapOf<String, Pair<String, String?>>() // Map chứa cả tên và avatarUrl
     private var tenMonAnMap = mapOf<String, String>()
 
-    fun setTenNguoiDungMap(map: Map<String, String>) {
+    fun setTenNguoiDungMap(map: Map<String, Pair<String, String?>>) {
         tenNguoiDungMap = map
         notifyDataSetChanged()
     }
@@ -54,10 +54,13 @@ class ReviewAdapter(
         // Lấy tên người dùng từ map hoặc Firestore nếu chưa có
         val userId = review.idnd ?: ""
         if (tenNguoiDungMap.containsKey(userId)) {
-            holder.txtTenNguoiDung.text = tenNguoiDungMap[userId]
+            val (name, avatarUrl) = tenNguoiDungMap[userId] ?: Pair("Ẩn danh", null)
+            holder.txtTenNguoiDung.text = name
+            loadAvatar(holder.imgUserIcon, avatarUrl)
         } else {
-            getUserName(userId) { name ->
+            getUserInfo(userId) { name, avatarUrl ->
                 holder.txtTenNguoiDung.text = name
+                loadAvatar(holder.imgUserIcon, avatarUrl)
             }
         }
 
@@ -68,10 +71,10 @@ class ReviewAdapter(
         holder.txtSoSao.text = "★".repeat(review.so_sao?.toIntOrNull() ?: 0)
         holder.txtNgayTao.text = review.created_at ?: "Không rõ"
 
-        Glide.with(context)
-            .load(review.avatar_url)
-            .placeholder(R.drawable.usernew)
-            .into(holder.imgUserIcon)
+//        Glide.with(context)
+//            .load(review.avatar_url)
+//            .placeholder(R.drawable.usernew)
+//            .into(holder.imgUserIcon)
 
         Glide.with(context)
             .load(review.hinhanh_danhgia)
@@ -90,28 +93,37 @@ class ReviewAdapter(
         notifyDataSetChanged()
     }
 
-    private fun getUserName(userId: String, callback: (String) -> Unit) {
+    private fun getUserInfo(userId: String, callback: (String, String?) -> Unit) {
         if (userId.isBlank()) {
-            callback("Ẩn danh")
+            callback("Ẩn danh", null)
             return
         }
 
         val db = FirebaseFirestore.getInstance()
         db.collection("nguoidung")
-            .whereEqualTo("idnd", userId)
-            .limit(1)
+            .document(userId) // Sử dụng userId làm document ID thay vì tìm kiếm theo field
             .get()
-            .addOnSuccessListener { documents ->
-                if (!documents.isEmpty) {
-                    val name = documents.first().getString("name") ?: "Ẩn danh"
-                    callback(name)
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    val name = document.getString("name") ?: "Ẩn danh"
+                    val avatarUrl = document.getString("avatarUrl") // Lấy URL avatar
+                    callback(name, avatarUrl)
                 } else {
-                    callback("Ẩn danh")
+                    callback("Ẩn danh", null)
                 }
             }
             .addOnFailureListener {
                 Log.e("GET_USER", "Lỗi Firestore: ${it.message}")
-                callback("Lỗi")
+                callback("Lỗi", null)
             }
+    }
+    private fun loadAvatar(imageView: ImageView, avatarUrl: String?) {
+        avatarUrl?.let { url ->
+            Glide.with(context)
+                .load(url)
+                .placeholder(R.drawable.baseline_account_circle_24)
+                .circleCrop()
+                .into(imageView)
+        } ?: imageView.setImageResource(R.drawable.baseline_account_circle_24)
     }
 }

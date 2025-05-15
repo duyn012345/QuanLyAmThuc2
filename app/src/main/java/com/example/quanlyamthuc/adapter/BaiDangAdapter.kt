@@ -24,6 +24,7 @@ class BaiDangAdapter(private val list: List<DangBai>) :
         val tvNoiDung: TextView = itemView.findViewById(R.id.tvNoiDung)
         val tvXemThem: TextView = itemView.findViewById(R.id.tvXemThem) // Xem thêm
         val tvAn: TextView = itemView.findViewById(R.id.tvAn) // Thêm dòng này để tham chiếu tvAn
+       // val imgAvatar: ImageView = itemView.findViewById(R.id.imgAvatar)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaiDangViewHolder {
@@ -54,6 +55,7 @@ class BaiDangAdapter(private val list: List<DangBai>) :
                 for (document in documents) {
                     val ten = document.getString("name") ?: "Ẩn danh"
                     holder.tvTenNguoiDang.text = "$ten"
+
                 }
             }
             .addOnFailureListener {

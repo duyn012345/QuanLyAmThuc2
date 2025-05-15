@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.quanlyamthuc.R
 import com.example.quanlyamthuc.adapter.ReviewAdapter
 import com.example.quanlyamthuc.model.ReviewModel
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
 class ReviewFragment : Fragment() {
@@ -35,6 +36,7 @@ class ReviewFragment : Fragment() {
     private lateinit var txtXemThemDuoi: TextView
     private lateinit var scrollViewThongKe: ScrollView
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,7 +48,7 @@ class ReviewFragment : Fragment() {
         recyclerView = view.findViewById(R.id.recyclerViewDanhGia)
         txtTongSoBaiDang = view.findViewById(R.id.txtTongSoBaiDang)
         containerThongKeMon = view.findViewById(R.id.containerThongKeMon)
-      //  txtXemThemThongKe = view.findViewById(R.id.txtXemThemThongKe)
+        //  txtXemThemThongKe = view.findViewById(R.id.txtXemThemThongKe)
         searchView = view.findViewById(R.id.searchView)
         txtXemThemTren = view.findViewById(R.id.txtXemThemTren)
         txtXemThemDuoi = view.findViewById(R.id.txtXemThemDuoi)
@@ -90,6 +92,7 @@ class ReviewFragment : Fragment() {
 
         loadMonAn()
     }
+
     private fun loadMonAn() {
         val foodRef = FirebaseDatabase
             .getInstance("https://quanlyamthuc-tpmd-default-rtdb.asia-southeast1.firebasedatabase.app/")
@@ -99,7 +102,8 @@ class ReviewFragment : Fragment() {
                 tenMonAnMap.clear()
                 for (foodSnapshot in snapshot.children) {
                     val idma = foodSnapshot.child("idma").getValue(String::class.java) ?: continue
-                    val tenma = foodSnapshot.child("tenma").getValue(String::class.java) ?: "Không rõ"
+                    val tenma =
+                        foodSnapshot.child("tenma").getValue(String::class.java) ?: "Không rõ"
                     tenMonAnMap[idma] = tenma
                 }
                 reviewAdapter.setTenMonAnMap(tenMonAnMap)
@@ -132,6 +136,7 @@ class ReviewFragment : Fragment() {
             }
         })
     }
+
     private fun hienThiThongKeTheoMon(danhSach: List<ReviewModel>) {
         val thongKeMap = mutableMapOf<String, Int>()
         for (review in danhSach) {
@@ -149,7 +154,10 @@ class ReviewFragment : Fragment() {
     private fun capNhatGiaoDienThongKe() {
         containerThongKeMon.removeAllViews()
 
-        val soLuongHienThi = if (isThongKeMoRong) thongKeMonList.size else minOf(thongKeMonList.size, soDongHienThiToiDa)
+        val soLuongHienThi = if (isThongKeMoRong) thongKeMonList.size else minOf(
+            thongKeMonList.size,
+            soDongHienThiToiDa
+        )
 
         for (i in 0 until soLuongHienThi) {
             val pair = thongKeMonList[i]
@@ -195,9 +203,9 @@ class ReviewFragment : Fragment() {
             txtXemThemDuoi.visibility = View.GONE
         }
     }
+
     // Extension function để convert dp to px
     fun Int.dpToPx(): Int = (this * Resources.getSystem().displayMetrics.density).toInt()
-
 
 
 //    private fun hienThiThongKeTheoMon(danhSach: List<ReviewModel>) {
@@ -256,19 +264,28 @@ class ReviewFragment : Fragment() {
 
     private fun xoaDanhGia(review: ReviewModel) {
         val key = review.key ?: return
+        // Thêm kiểm tra quyền trước khi xóa
+
         val ref = FirebaseDatabase
             .getInstance("https://quanlyamthuc-tpmd-default-rtdb.asia-southeast1.firebasedatabase.app/")
-            .getReference("5/data")
+            .getReference("5/data/$key") // Thêm key vào đường dẫn
         ref.removeValue()
             .addOnSuccessListener {
                 Toast.makeText(requireContext(), "Đã xóa đánh giá", Toast.LENGTH_SHORT).show()
+
+                // Cập nhật lại danh sách sau khi xóa
+                val newList = reviewList.toMutableList().apply { remove(review) }
+                reviewList = newList
+                reviewAdapter.updateList(newList)
+                txtTongSoBaiDang.text = "Tổng số đánh giá: ${newList.size}"
+                hienThiThongKeTheoMon(newList)
             }
             .addOnFailureListener {
-                Toast.makeText(requireContext(), "Xóa thất bại", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Xóa thất bại: ${it.message}", Toast.LENGTH_SHORT)
+                    .show()
             }
     }
 }
-
 
 //package com.example.quanlyamthuc.admin
 //

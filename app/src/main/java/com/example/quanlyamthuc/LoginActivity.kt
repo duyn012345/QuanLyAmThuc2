@@ -1,10 +1,15 @@
 package com.example.quanlyamthuc
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputType
+import android.text.method.PasswordTransformationMethod
 import android.util.Log
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.example.quanlyamthuc.admin.HomeAdminActivity
 import com.example.quanlyamthuc.databinding.ActivityLoginBinding
 import com.google.firebase.Firebase
@@ -33,6 +38,9 @@ class LoginActivity : AppCompatActivity() {
         auth = Firebase.auth
         database = Firebase.database.reference
 
+        binding.forgotPassword.setOnClickListener {
+            showForgotPasswordDialog()
+        }
 
         binding.loginButton.setOnClickListener {
             //get text form edittext
@@ -60,6 +68,23 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+        // Xử lý sự kiện toggle password
+        binding.passwordLayout.setEndIconOnClickListener {
+            val editText = binding.password
+            val selection = editText.selectionEnd // Giữ vị trí con trỏ
+
+            if (editText.transformationMethod == PasswordTransformationMethod.getInstance()) {
+                // Hiển thị mật khẩu
+                editText.transformationMethod = null
+                binding.passwordLayout.endIconDrawable = ContextCompat.getDrawable(this, R.drawable.ic_visibility_off)
+            } else {
+                // Ẩn mật khẩu
+                editText.transformationMethod = PasswordTransformationMethod.getInstance()
+                binding.passwordLayout.endIconDrawable = ContextCompat.getDrawable(this, R.drawable.ic_visibility)
+            }
+
+            editText.setSelection(selection) // Khôi phục vị trí con trỏ
+        }
     }
 
     private fun loginUser() {
@@ -71,6 +96,48 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Login Failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun showForgotPasswordDialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Quên mật khẩu")
+            .setMessage("Nhập email để nhận liên kết đặt lại mật khẩu")
+
+        val input = EditText(this).apply {
+            inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+            hint = "Email"
+            setPadding(32, 32, 32, 32)
+        }
+
+        builder.setView(input)
+            .setPositiveButton("Gửi") { _, _ ->
+                val email = input.text.toString().trim()
+                if (email.isNotEmpty()) {
+                    sendPasswordResetEmail(email)
+                } else {
+                    Toast.makeText(this, "Vui lòng nhập email", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .setNegativeButton("Hủy", null)
+            .show()
+    }
+    private fun sendPasswordResetEmail(email: String) {
+        auth.sendPasswordResetEmail(email)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(
+                        this,
+                        "Kiểm tra email $email để đặt lại mật khẩu",
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else {
+                    Toast.makeText(
+                        this,
+                        "Lỗi: ${task.exception?.message ?: "Không thể gửi email"}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
     }
 
     private fun checkUserRole(user: FirebaseUser?) {

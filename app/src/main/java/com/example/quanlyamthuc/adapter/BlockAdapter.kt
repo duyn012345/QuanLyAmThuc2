@@ -8,19 +8,23 @@ import com.example.quanlyamthuc.databinding.ItemBlockBinding
 import com.example.quanlyamthuc.model.BlockModel
 import android.view.LayoutInflater
 import android.widget.ImageButton
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quanlyamthuc.R
 import com.google.firebase.firestore.FirebaseFirestore
 
-class BlockAdapter (
+class BlockAdapter(
     private val context: Context,
     private var blockList: List<BlockModel>,
-    private val onDeleteClick: (BlockModel) -> Unit,
-
+    private val onDeleteClick: (BlockModel) -> Unit
 ) : RecyclerView.Adapter<BlockAdapter.BlockViewHolder>() {
 
-   // private var filteredList: List<BlockModel> = blockList
+    private var userInfoMap = mapOf<String, Pair<String, String?>>() // Map chứa cả tên và avatarUrl
 
+    fun setUserInfoMap(map: Map<String, Pair<String, String?>>) {
+        userInfoMap = map
+        notifyDataSetChanged()
+    }
     // Thêm hàm update danh sách
     fun updateList(newList: List<BlockModel>) {
         blockList = newList
@@ -57,10 +61,17 @@ class BlockAdapter (
             binding.txtTinh.text = block.tinhthanh
             binding.txtLike.text = block.so_like
 
-            getUserName(block.idnd ?: "") { name ->
-                binding.txtNguoiDang.text = name // bạn cần thêm TextView này trong layout
-                Log.d("DEBUG_IDND", "block.idnd = ${block.idnd}")
-
+            // Load thông tin người dùng và avatar
+            val userId = block.idnd ?: ""
+            if (userInfoMap.containsKey(userId)) {
+                val (name, avatarUrl) = userInfoMap[userId] ?: Pair("Ẩn danh", null)
+                binding.txtNguoiDang.text = name
+                loadAvatar(binding.imgUserIcon, avatarUrl)
+            } else {
+                getUserInfo(userId) { name, avatarUrl ->
+                    binding.txtNguoiDang.text = name
+                    loadAvatar(binding.imgUserIcon, avatarUrl)
+                }
             }
 
             if (!block.hinhanh_ma.isNullOrEmpty()) {
@@ -73,12 +84,12 @@ class BlockAdapter (
 
            }
         }
-    fun getUserName(userId: String, callback: (String) -> Unit) {
+    private fun getUserInfo(userId: String, callback: (String, String?) -> Unit) {
         if (userId.isBlank()) {
-            Log.e("GET_USER", "ID người dùng rỗng!")
-            callback("Ẩn danh")
+            callback("Ẩn danh", null)
             return
         }
+
         val db = FirebaseFirestore.getInstance()
         db.collection("nguoidung") .whereEqualTo("idnd", userId)
             .limit(1)
@@ -87,16 +98,36 @@ class BlockAdapter (
                 if (!documents.isEmpty) {
                     val doc = documents.first()
                     val name = doc.getString("name") ?: "Ẩn danh"
-                    Log.d("GET_USER", "Tên người dùng: $name")
-                    callback(name)
+                    val avatarUrl = doc.getString("avatarUrl")
+                    callback(name, avatarUrl)
                 } else {
-                    Log.e("GET_USER", "Không tìm thấy người dùng với ind = $userId")
-                    callback("Ẩn danh")
+                    callback("Ẩn danh", null)
+//                    val db = FirebaseFirestore.getInstance()
+//                    db.collection("nguoidung") .whereEqualTo("idnd", userId)
+//                        .limit(1)
+//                        .get()
+//                        .addOnSuccessListener { document ->
+//                            if (document.exists()) {
+//                                val name = document.getString("name") ?: "Ẩn danh"
+//                                val avatarUrl = document.getString("avatarUrl")
+//                                callback(name, avatarUrl)
+//                            } else {
+//                                callback("Ẩn danh", null)
                 }
             }
             .addOnFailureListener {
                 Log.e("GET_USER", "Lỗi Firestore: ${it.message}")
-                callback("Lỗi")
+                callback("Lỗi", null)
             }
+    }
+
+    private fun loadAvatar(imageView: ImageView, avatarUrl: String?) {
+        avatarUrl?.let { url ->
+            Glide.with(context)
+                .load(url)
+                .placeholder(R.drawable.baseline_account_circle_24)
+                .circleCrop()
+                .into(imageView)
+        } ?: imageView.setImageResource(R.drawable.baseline_account_circle_24)
     }
 }

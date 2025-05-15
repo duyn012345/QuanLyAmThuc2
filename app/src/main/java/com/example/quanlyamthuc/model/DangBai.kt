@@ -9,5 +9,6 @@ data class DangBai(
     val hinhanh_ma: String = "",
     val so_like: String = "",
     val created_at: String = "",
-    var tenNguoiDung: String = ""
+    var tenNguoiDung: String = "",
+
 )

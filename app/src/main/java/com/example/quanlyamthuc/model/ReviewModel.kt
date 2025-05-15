@@ -11,7 +11,7 @@ data class ReviewModel(
    var hinhanh_danhgia: String? = null,
    var created_at: String? = null,
    var updated_at: String? = null,
-
+   val avatarNguoiDung: String = ""
 )
 
 // data class ReviewModel (

@@ -7,144 +7,322 @@
     android:background="@drawable/nendnhap3"
     tools:context=".LoginActivity">
 
-    <!--android:fontFamily="@font/yeonsung_regular"-->
-
-
+    <!-- Logo -->
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="220dp"
-        android:layout_height="180dp"
-        android:layout_marginTop="18dp"
+        android:layout_width="200dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="48dp"
         android:src="@drawable/logosf"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.499"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/loginButton"
-        android:layout_width="125dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="120dp"
-        android:background="@drawable/redbutton"
-        android:outlineSpotShadowColor="@color/textColor"
-        android:text="Login"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/buttonFB"
-        app:layout_constraintHorizontal_bias="0.422"
-        app:layout_constraintStart_toStartOf="@+id/buttonGG"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="350dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="28dp"
-        android:background="@drawable/whitebutton"
-        android:drawableLeft="@drawable/mail"
-        android:drawablePadding="15dp"
-        android:elevation="2dp"
-        android:hint="Email "
-        android:inputType="textEmailAddress"
-        android:paddingLeft="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView2" />
-
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="350dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/whitebutton"
-        android:drawableLeft="@drawable/lock"
-        android:drawablePadding="15dp"
-        android:elevation="2dp"
-        android:fontFamily=""
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:outlineSpotShadowColor="@color/textColor"
-        android:paddingLeft="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.521"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/email" />
-
-    <TextView
-        android:id="@+id/dontHaveAccountButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Dont Have Account?"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/loginButton"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toStartOf="@+id/loginButton"
-        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonGG"
-        android:layout_width="145dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="112dp"
-        android:background="@drawable/whitebutton"
-        android:drawableLeft="@drawable/gg"
-        android:paddingLeft="15dp"
-        android:text="Google"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/password"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonFB"
-        android:layout_width="145dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="36dp"
-        android:background="@drawable/whitebutton"
-        android:drawableLeft="@drawable/fb"
-        android:paddingLeft="15dp"
-        android:text="Facebook"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="@+id/email"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/password"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="256dp"
-        android:text="Or\nContinue With"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="21sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/email"
-        app:layout_constraintHorizontal_bias="0.432"
-        app:layout_constraintStart_toStartOf="@+id/email"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
+    <!-- Tiêu đề LOGIN -->
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="sans-serif-condensed-medium"
         android:text="LOGIN"
         android:textColor="@color/white"
         android:textSize="40sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/imageView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Ô nhập Email -->
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="0dp"
+        android:layout_height="57dp"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:drawableLeft="@drawable/mail"
+        android:drawablePadding="15dp"
+        android:paddingLeft="15dp"
+        android:background="@drawable/whitebutton"
+        android:elevation="2dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintTop_toBottomOf="@id/textView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordLayout"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:hintEnabled="false"
+        app:endIconMode="password_toggle"
+        app:endIconTint="@color/colorNegative"
+        app:startIconDrawable="@drawable/lock"
+        app:startIconTint="@color/colorNegative"
+        app:boxBackgroundMode="outline"
+        app:boxBackgroundColor="@color/white"
+        android:background="@drawable/whitebutton"
+        app:layout_constraintTop_toBottomOf="@id/email"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:background="@drawable/whitebutton"
+            android:paddingStart="12dp"
+            android:paddingLeft="12dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Dòng quên mật khẩu -->
+    <TextView
+        android:id="@+id/forgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="👑 Forget password"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/passwordLayout"
+        app:layout_constraintEnd_toEndOf="@id/passwordLayout" />
+
+    <!-- Text "Or Continue With" -->
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Or\nContinue With"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/forgotPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Nút Facebook -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonFB"
+        android:layout_width="138dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/whitebutton"
+        android:drawableLeft="@drawable/fb"
+        android:drawablePadding="8dp"
+        android:paddingLeft="10dp"
+        android:text="Facebook"
+        android:textAllCaps="false"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@id/buttonGG"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView4" />
+
+    <!-- Nút Google -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonGG"
+        android:layout_width="138dp"
+        android:layout_height="57dp"
+        android:text="Google"
+        android:textAllCaps="false"
+        android:textSize="14sp"
+        android:drawableLeft="@drawable/gg"
+        android:drawablePadding="2dp"
+        android:paddingLeft="10dp"
+        android:background="@drawable/whitebutton"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintTop_toBottomOf="@id/textView4"
+        app:layout_constraintStart_toEndOf="@id/buttonFB"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Nút Login -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/loginButton"
+        android:layout_width="125dp"
+        android:layout_height="57dp"
+        android:text="Login"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:background="@drawable/redbutton"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/buttonFB"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Text "Don't have an account?" -->
+    <TextView
+        android:id="@+id/dontHaveAccountButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Don't Have Account?"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/loginButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:background="@drawable/nendnhap3"-->
+<!--    tools:context=".LoginActivity">-->
+
+<!--    &lt;!&ndash;android:fontFamily="@font/yeonsung_regular"&ndash;&gt;-->
+
+
+<!--    <ImageView-->
+<!--        android:id="@+id/imageView"-->
+<!--        android:layout_width="220dp"-->
+<!--        android:layout_height="180dp"-->
+<!--        android:layout_marginTop="18dp"-->
+<!--        android:src="@drawable/logosf"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.499"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:id="@+id/loginButton"-->
+<!--        android:layout_width="125dp"-->
+<!--        android:layout_height="57dp"-->
+<!--        android:layout_marginTop="120dp"-->
+<!--        android:background="@drawable/redbutton"-->
+<!--        android:outlineSpotShadowColor="@color/textColor"-->
+<!--        android:text="Login"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:textSize="20sp"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/buttonFB"-->
+<!--        app:layout_constraintHorizontal_bias="0.422"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/buttonGG"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/textView4" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/email"-->
+<!--        android:layout_width="350dp"-->
+<!--        android:layout_height="57dp"-->
+<!--        android:layout_marginTop="28dp"-->
+<!--        android:background="@drawable/whitebutton"-->
+<!--        android:drawableLeft="@drawable/mail"-->
+<!--        android:drawablePadding="15dp"-->
+<!--        android:elevation="2dp"-->
+<!--        android:hint="Email "-->
+<!--        android:inputType="textEmailAddress"-->
+<!--        android:paddingLeft="15dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.497"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/textView2" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/password"-->
+<!--        android:layout_width="350dp"-->
+<!--        android:layout_height="57dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:background="@drawable/whitebutton"-->
+<!--        android:drawableLeft="@drawable/lock"-->
+<!--        android:drawablePadding="15dp"-->
+<!--        android:elevation="2dp"-->
+<!--        android:fontFamily=""-->
+<!--        android:hint="Password"-->
+<!--        android:inputType="textPassword"-->
+<!--        android:outlineSpotShadowColor="@color/textColor"-->
+<!--        android:paddingLeft="15dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.521"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/email" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/dontHaveAccountButton"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="40dp"-->
+<!--        android:text="Dont Have Account?"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:textSize="20sp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/loginButton"-->
+<!--        app:layout_constraintHorizontal_bias="0.4"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/loginButton"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/loginButton" />-->
+
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:id="@+id/buttonGG"-->
+<!--        android:layout_width="145dp"-->
+<!--        android:layout_height="57dp"-->
+<!--        android:layout_marginTop="112dp"-->
+<!--        android:background="@drawable/whitebutton"-->
+<!--        android:drawableLeft="@drawable/gg"-->
+<!--        android:paddingLeft="15dp"-->
+<!--        android:text="Google"-->
+<!--        android:textAllCaps="false"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/textView4"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/password"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/password" />-->
+
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:id="@+id/buttonFB"-->
+<!--        android:layout_width="145dp"-->
+<!--        android:layout_height="57dp"-->
+<!--        android:layout_marginTop="36dp"-->
+<!--        android:background="@drawable/whitebutton"-->
+<!--        android:drawableLeft="@drawable/fb"-->
+<!--        android:paddingLeft="15dp"-->
+<!--        android:text="Facebook"-->
+<!--        android:textAllCaps="false"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/email"-->
+<!--        app:layout_constraintHorizontal_bias="1.0"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/password"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/textView4" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/textView4"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="256dp"-->
+<!--        android:text="Or\nContinue With"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:textSize="21sp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/email"-->
+<!--        app:layout_constraintHorizontal_bias="0.432"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/email"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/imageView" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/textView2"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:fontFamily="sans-serif-condensed-medium"-->
+<!--        android:text="LOGIN"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:textSize="40sp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.495"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/imageView" />-->
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->

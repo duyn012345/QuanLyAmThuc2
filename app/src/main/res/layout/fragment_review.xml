@@ -23,6 +23,7 @@
         android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/khung_dialog_danhgia"
         android:hint="Tìm kiếm đánh giá..."
         android:drawableStart="@android:drawable/ic_menu_search"
         />

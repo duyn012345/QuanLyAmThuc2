@@ -86,8 +86,11 @@ class ProvinceAdapter(
             // Cập nhật thông tin tỉnh
             province.tentinh = name
             province.hinhanh = imageUrl
-            val provinceRef = FirebaseDatabase.getInstance().getReference("14/data/${province.id}")
-            provinceRef.setValue(province)
+            val database = FirebaseDatabase.getInstance("https://quanlyamthuc-tpmd-default-rtdb.asia-southeast1.firebasedatabase.app/")
+            // val provinceRef = database.getReference("14/data")
+
+            val provinceRef = database.getReference("14/data/${province.id}")
+    provinceRef.setValue(province)
                 .addOnSuccessListener {
                     Toast.makeText(context, "Cập nhật tỉnh thành công", Toast.LENGTH_SHORT).show()
                 }
@@ -107,7 +110,11 @@ class ProvinceAdapter(
             .setTitle("Xóa tỉnh")
             .setMessage("Bạn có chắc chắn muốn xóa tỉnh ${province.name}?")
             .setPositiveButton("Xóa") { dialog, _ ->
-                val provinceRef = FirebaseDatabase.getInstance().getReference("14/data/${province.id}")
+                // Khởi tạo FirebaseDatabase với URL tùy chỉnh
+                val database = FirebaseDatabase.getInstance("https://quanlyamthuc-tpmd-default-rtdb.asia-southeast1.firebasedatabase.app/")
+               // val provinceRef = database.getReference("14/data")
+
+                val provinceRef = database.getReference("14/data/${province.id}")
                 provinceRef.removeValue()
                     .addOnSuccessListener {
                         Toast.makeText(context, "Xóa tỉnh thành công", Toast.LENGTH_SHORT).show()

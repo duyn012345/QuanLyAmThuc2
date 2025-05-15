@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="8dp"
     android:layout_height="wrap_content"
     android:elevation="4dp"
     android:padding="8dp"
-    >
+    app:cardCornerRadius="15dp"
+    app:cardElevation="2dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +27,8 @@
                 android:id="@+id/imgUserIcon"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/usernew"
+                android:src="@drawable/baseline_account_circle_24"
+                android:background="@drawable/circle_background"
                 android:contentDescription="User Icon"
                 android:layout_marginEnd="8dp"/>
 
@@ -81,7 +84,7 @@
             android:layout_height="wrap_content"
             android:text="⭐⭐⭐⭐⭐"
             android:textSize="14sp"
-            android:textColor="#666"
+            android:textColor="#FFD700"
             android:src="@drawable/star3"/>
 
         <ImageView

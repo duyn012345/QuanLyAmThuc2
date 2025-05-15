@@ -137,7 +137,8 @@ class UserFragment : Fragment() {
                     // Cập nhật adapter với bản copy của list
                     userAdapter.updateList(ArrayList(userList))
                     updateEmptyView()
-
+                    // Cập nhật tổng số người dùng
+                    updateTotalUsersCount(userList.size)
                     Log.d("UserFragment", "Update completed. Total users: ${userList.size}")
                 }
             }
@@ -149,9 +150,16 @@ class UserFragment : Fragment() {
                     originalUserList.clear()
                     userAdapter.updateList(emptyList())
                     updateEmptyView()
+                    updateTotalUsersCount(0)
                 }
             }
     }
+    // Hàm cập nhật TextView tổng số người dùng
+    private fun updateTotalUsersCount(count: Int) {
+        binding.tvTotalUsers.text = "Tổng số người dùng: $count"
+    }
+
+
     private fun filterUsers(query: String) {
         val filteredList = if (query.isEmpty()) {
             originalUserList.toList() // Trả về bản copy
@@ -163,6 +171,7 @@ class UserFragment : Fragment() {
 
         userAdapter.updateList(filteredList)
         updateEmptyView()
+        updateTotalUsersCount(filteredList.size)
     }
 
     private fun updateEmptyView() {

@@ -329,33 +329,39 @@ class ProfileFragment : Fragment() {
 
     private fun demSoBaiDangVaDanhGia() {
         currentUser?.uid?.let { uid ->
-            // Đếm bài đăng
-            realtimeDb.child("10/data")
+            // ===== REALTIME DATABASE =====
+            // Đếm BÀI ĐĂNG (Realtime DB - idnd là field)
+            FirebaseDatabase.getInstance("https://quanlyamthuc-tpmd-default-rtdb.asia-southeast1.firebasedatabase.app")
+                .getReference("2/data")
                 .orderByChild("idnd")
                 .equalTo(uid)
-                .addValueEventListener(object : ValueEventListener {
+                .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
-                        txtSoBaiDang.text = "${snapshot.childrenCount} "
+                        txtSoBaiDang.text = "${snapshot.childrenCount}"
                     }
 
                     override fun onCancelled(error: DatabaseError) {
                         Log.e("Profile", "Lỗi đếm bài đăng: ${error.message}")
+                        txtSoBaiDang.text = "0"
                     }
                 })
 
-            // Đếm đánh giá
-            realtimeDb.child("5/data")
+            // Đếm ĐÁNH GIÁ (Realtime DB - idnd là field)
+            FirebaseDatabase.getInstance("https://quanlyamthuc-tpmd-default-rtdb.asia-southeast1.firebasedatabase.app")
+                .getReference("5/data")
                 .orderByChild("idnd")
                 .equalTo(uid)
-                .addValueEventListener(object : ValueEventListener {
+                .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
-                        txtSoDanhGia.text = "${snapshot.childrenCount} "
+                        txtSoDanhGia.text = "${snapshot.childrenCount}"
                     }
 
                     override fun onCancelled(error: DatabaseError) {
                         Log.e("Profile", "Lỗi đếm đánh giá: ${error.message}")
+                        txtSoDanhGia.text = "0"
                     }
                 })
+
         }
     }
 }
