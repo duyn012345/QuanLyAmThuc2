@@ -2,9 +2,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="#FAF3EA">
 
-    <TextView
+<TextView
         android:text="Thêm tỉnh mới"
         android:textSize="20sp"
         android:textStyle="bold"

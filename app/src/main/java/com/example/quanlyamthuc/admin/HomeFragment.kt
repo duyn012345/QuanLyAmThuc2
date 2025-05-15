@@ -99,7 +99,6 @@ class HomeFragment : Fragment() {
 
         lifecycleScope.launch {
             try {
-                // Lấy dữ liệu đồng thời từ nhiều nguồn
                 val (userCount, dishCount, provinceCount, reviewCount, blockCount) = awaitAll(
                     async { getFirestoreCount("nguoidung") },
                     async { getRealtimeCount(database.getReference("10/data")) }, // Món ăn
@@ -165,7 +164,7 @@ class HomeFragment : Fragment() {
             legend.orientation = Legend.LegendOrientation.HORIZONTAL
             legend.yEntrySpace = 10f            // 🔸 Tăng khoảng cách giữa các dòng
             legend.formToTextSpace = 10f        // 🔸 Tăng khoảng cách giữa biểu tượng và text
-            legend.textSize = 12f               // 🔸 Tăng cỡ chữ cho dễ nhìn
+            legend.textSize = 12f               // 🔸 Tăng cỡ chữ
 
             setExtraBottomOffset(20f)
         }

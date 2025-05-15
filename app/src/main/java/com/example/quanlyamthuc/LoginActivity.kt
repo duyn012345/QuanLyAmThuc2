@@ -51,7 +51,6 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Please Fill All Details", Toast.LENGTH_SHORT).show()
             } else {
                 loginUser()
-                Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
             }
 
         }

@@ -39,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/khung_dialog_danhgia"
                     android:drawableStart="@android:drawable/ic_menu_search"
-                    android:hint="Tìm kiếm đánh giá..." />
+                    android:hint="Tìm kiếm món ăn..." />
             </LinearLayout>
 
         </androidx.appcompat.widget.Toolbar>
