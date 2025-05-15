@@ -113,7 +113,7 @@ class ChiTietMonAnFragment : Fragment() {
         binding.tvDiaChiChiTiet.text = "  Địa chỉ quán gợi ý: ${monAn.diachi}"
         binding.tvMoTaChiTiet.text = "\n${monAn.mota}"
 
-        binding.tvXemDiaChiChiTiet.text = "  Xem địa chỉ"
+        binding.tvXemDiaChiChiTiet.text = "  Xem địa chỉ trên bản đồ"
         binding.tvXemDiaChiChiTiet.setOnClickListener {
             val link = monAn.duonglink_diachi
             if (!link.isNullOrEmpty()) {

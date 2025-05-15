@@ -2,7 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
-    kotlin("kapt") // Thêm dòng này vào
+    kotlin("kapt")
 }
 
 android {
